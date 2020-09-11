@@ -1,0 +1,48 @@
+tra 1 e due cambia la grow function: in 1 gP e' costante / 0 (fuori/dentro GA) mentre gF1 e' 0 / parabolico (fuori/dentro GA); in due sono entrambi parabolici
+ta due e tre cambia l'inizio della crescita: in due coincide con l'inizio del blocco, in tre e' shiftato di uno.
+
+
+c'e' bisogno di una certa densita' per far partire il riconoscimento ed il resto.
+densita' per far partire il riconoscimento etc: [300, 500] cell ml-1. (Ele et al)
+consideriamo densita' del fito durante gli eventi di sesso di Pm da Diana per rafforzare il punto che durante questi eventi Pm hanno uno spazio riservato
+assumiamo 4000 cell ml-1 e risorse illimitate.
+growth arest [2, 6] giorni.
+alpha (numero di nuove nate) 0.1 e 2% di quelle iniziali.
+Consideriamo due equazioni
+da esplorare che e' m, che in questo caso include anche il tasso di disaffollamento fino a  raggiungere le concentrazioni di background.
+rates:  P  0   (iniziale, intervallo di ga)    e cresce  (Fig e e 5 di domenico)
+        f1 0.4    (iniziale, intervallo di ga) e cresce  (Fig e e 5 di domenico)
+si aggregano o si mantengono aggregate per fare sesso.
+Dalla densita' iniziale si piu' che dimezzano (altro dato da esplorare)
+perche' quelle che non fanno gameti schiattano (dati di Rossella)
+ripartano da giono 3 a giorno 5 (rate 0.984) che probabilmente andra' salire fisiologicamente ma non necessariamente in situ per via dei vincoli.
+A questo punto le figlie anche se piu' lente iniziano ad aumentare e diventano parte della popolazione.
+E' possibile che la mortalita' della parentali sia alta (nei dati in situ le popolazioni sono tutte concentrate in un breve intervallo di taglia.
+E' quindi possibile che in un paio di settimane le figlie diventino la parte prevalente ma e' ustile esplorare m in senso lato.
+
+
+L'alternativa e' fare un fit parabolico sulla figura 3
+
+La simulazione di Krzysz non va bene piu' che altro perche' assume variazioni continue ed esplora alpha un po' troppo alti
+rP:rF non e' costante ma va da zero durante il GA a 1.8 nei tre giorni successivi alla ripartenza.
+Quando compaiono le prime figlie che e' il minimo di densita' dopo le 'le morti per sesso' ci sono 7167 cell ml-1 di parentali
+e 88 figlie alpha=0.012 ed ovviamente va decrescendo visto che le parnetali crescono piu' velocemente [ti allego il file di Rossella]
+ad un burst iniziale che riesce anche un po' perch' le parentali si bloccano e poi ripartono piano e poi, suppongo per l'ulteriore autorimozione di una parte delle parentali, come suggerito lo spettro di taglia osservato in situ
+Comunque non c'e' una vera competizione tra parentali e figlie ma potrebbe esserci tra figlie ed il resto della comunita' ma qui entra in gioco la crescita netta, che potrebbe aumenatre per un m piu' basso dovuto alla taglia decrescente ma compensa da un r crescente per la riduzione di taglia
+Percio' credo che vada esplorato m piu' che rP:rP mentre alpha andrebbe analizzato rispetto a tutta la comunita'
+
+ovviamente abbiamo un problema di Carrying Capacity nel senso che cosi' crescono all'infinito. A questo punto io porrei come carrying capacity il numero iniziale delle parentali. Cioe' se campavano prima al punto da raggiungere i valori soglia consideriamo quello come la quota di risorse a loro destinata. Quindi le figlie crescono fino a che (abbiamo bisogno di sapere le quote di N delle parentali e delle figlie, ma si puo' ricavare dall'assimilazione) non sono arrivate insieme alle parentali alla vecchia carrying capacity. Poi se le parentali muoiono un po' piu' di loro la nuova generazione si consolida. Credo che questo scenario sia abbastanza vicino alla realta'. Il GA delle parentali permette il primo inoculo. Le fluttuazioni nelle abbondanze (Marina, Valeria et al. hanno vari lavori sulla dinamica di popolazione di Pm) credo dipendano dal maggiore o minore successo della fase sessuale che, tra l'altro, avviene ogni due anni per sottopopolazione.
+
+piu' o meno con un +- nel range. Noi sospettiamo che quelle dei primi due giorni siano la nuova coorte, poi l'aumento potrebbe essere dovuto a nuove F1 o a F2 (sono indistinguibili) quindi dobbiamo dare un po' di elasticita' anche ai valori
+P->F1 e rF
+
+dal tuo grafico le parentali diminuiscono di 2000. Con l'andamento di Rossella al giorno 4.5 le parentali sono al numero dell'inizio mentre le figlie sono a 120, diciamo che in risorse limitate sarebbero a ~240 di meno o anche un po' di meno (nel file di Ros ci sono i biovolume e le quote gia' cacolati 😀) Le figlie rimangono sempre una frazione molto piccola ma a quel punto prendono la loro quota e continuano a dividersi. Se poi aumenta mP, come credo, si ha il rinnovo
+
+
+ok credo che piu' o meno ci siamo. Dobbiamo solo decidere se mostrare un'esplorazione nello spazio dei parametri, Di fatto abbiamo rF, rP, alpha, importante per il numero di reclute al termine del GA, durata del GA e, soprattutto mP. Sono un po' troppi per una rappresentazione grafica semplice. Potremmo ridurre le dimensioni vincolando rF e rP ed mP all'allometria (e quindi mettere come variabile il rapporto di taglie) e aggregando durata GA e alpha che determinano insieme il numero di reclute (condensato in alpha). Dovrebbe venir fuori che se loro partono col sesso quando sono molto piccole l'aumento di rP e' relativamente piccolo ma mP sale parecchio e quindi aumento lo'spazio' per le reclute. Sara' un po' complicato da spiegare ma si puo' fare.
+
+tutte si bloccano e solo alcune possono fare meiosi
+paper di marina che ha messo in fondo alle note (parlava di decisioni)
+quali sono le dimensioni del parameter sweep? rp/rf; momento di avvio della F1, mortalita'
+figura e parametro medoti e risultato modello
+
