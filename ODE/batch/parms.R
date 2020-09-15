@@ -1,7 +1,7 @@
 # ones used for the sweep are commented out
 input <- list(
            p_conc                 = 4E3,
-           alpha_                 = 0.012,
+          #alpha_                 = 0.012,
           #death_rate             = 0.8,
            end_time               = 15,
            growth_block_start     = 2,

@@ -1,5 +1,5 @@
 
-mollo <- function(p_,f1_,m_) {
+mollo <- function(p_,f1_,m_, alpha_) {
   model <- function(t, x, parms, approx_gp, approx_gf1, approx_dp) {
     with(as.list(c(parms, x)), {
       gr_p <- approx_gp(t)
@@ -46,7 +46,7 @@ mollo <- function(p_,f1_,m_) {
     rates_f1_approx <- approxfun(rates$Time, rates$gr_f1, rule = 2)
     rates_dp_approx <- approxfun(rates$Time, rates$dr_p,  rule = 2)
 
-    xstart <- c(p_p  = input$p_conc, p_f1 = input$alpha_ * input$p_conc)
+    xstart <- c(p_p  = input$p_conc, p_f1 = alpha_ * input$p_conc)
     
     parms <- c(r0_p = p_,
                r0_f1 = f1_,
