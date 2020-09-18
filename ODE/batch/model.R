@@ -1,59 +1,85 @@
 
-mollo <- function(p_,f1_,m_, alpha_) {
-  model <- function(t, x, parms, approx_gp, approx_gf1, approx_dp) {
+mollo <- function(tga,fgr,a__) {
+  allorates <- function(len, r0, d0) {
+      bv   <- (len * 9) / 2
+      C_   <- 10 ^ (0.758 * (log(bv) / log(10)) - 0.421999999999998)
+      N    <- C_ / 12 * 106 / 16
+      gr_alloc <- 0.25 + 0.04 * len - 0.0005 * len ^ 2
+      de_alloc <- 0.40 + 0.04 * len - 0.0005 * len ^ 2
+      gr  <- r0 * gr_alloc
+      de_  <- d0 * de_alloc
+      res <- list(bv       = bv,
+                  C_       = C_,
+                  N        = N,
+                  gr_alloc = gr_alloc,
+                  gr       = gr,
+                  de_alloc = de_alloc,
+                  de_      = de_)
+      return(res)
+  }
+
+  model <- function(t, x, parms, approx_len_p, approx_len_f1, allo_rates) {
     with(as.list(c(parms, x)), {
-      gr_p <- approx_gp(t)
-      r_f1 <- approx_gf1(t)
-      d_p <- approx_dp(t)
-      k <- 1 - (p_p + p_f1) / p0
-      dp_p  <- r0_p  * k * gr_p  * p_p  - d_p * p_p
-      dp_f1 <- r0_f1 * k * r_f1 * p_f1
+
+      p_len <- approx_len_p(t)
+      f_len <- approx_len_f1(t)
+      blole <- input$growth_block_start + tga 
+
+      p_ar <- allo_rates(p_len, r0_p, d0_p)
+      f_ar <- allo_rates(p_len, r0_f1, 1)
+
+      nc_ <- unname(c(p_p * p_ar$N, p_f1 * f_ar$N))
+      nc <- sum(nc_)
+      k <- 1 -  (nc / p0)
+      dp_p  <- p_ar$gr * k * p_p   - p_ar$de_ * p_p
+      dp_f1 <- ifelse(t < blole, 0, f_ar$gr) * k * p_f1
+             - ifelse(t < blole, 0, f_ar$de_) * p_f1
       res <- c(dp_p, dp_f1)
       list(res)
     })
-  } 
+  }
 
-    times         <- seq(0, input$end_time)
-    tl            <- length(times) 
+    times <- seq(0,  input$end_time)
+    tl    <- length(times)
 
-    bs            <- input$growth_block_start
-    len           <- input$growth_block_length
-    be            <- (input$growth_block_start + len)
-    trms          <- input$time_to_reach_min_size
-    ph_rt         <- input$dday
-    
-    ga            <- seq(0.1, 1, len = trms)
-    pbl           <- ga ** 2
-    pb_l          <- length(pbl)
-    
-    rates         <- data.frame(Time = times,
-                                gr_p = rep(0, tl),
-                                gr_f1 = rep(0, tl),
-                                dr_p  = rep(m_, tl))
+    bs    <- input$growth_block_start
+    len   <- tga
+    be    <- input$growth_block_start + len
 
-    ala <- 1:min(pb_l,bs)
-    olo <- (be+1):min(be+(pb_l-bs), tl)
+    lenv  <- input$maxlen:input$minlen
+    pb_l  <- length(lenv)
 
-    rates$gr_p[ala]  <- pbl[ala]
-    if(pb_l > bs) {
-      rates$gr_p[olo]  <- tail(pbl, -(pb_l-length(olo)))
+    rates <- data.frame(Time = times,
+                                len_p = rep(input$minlen, tl),
+                                len_f = rep(input$minlen, tl))
+
+    ala <- 1:min(pb_l, bs)
+    olo <- (be + 1):min(be + (pb_l  - bs), tl)
+
+    rates$len_p[ala]  <- lenv[ala]
+    if (pb_l > bs) {
+      rates$len_p[olo]  <- lenv[-ala][seq_len(length(olo))]
     }
-    rates$gr_f1[(be+1):(min(be+pb_l,tl))] <- head(pbl,tl-be)
+    rates$len_p[bs:be] <- lenv[length(ala)]
 
-    rates$dr_p[rates$Time >= ph_rt & rates$Time <= ph_rt] <- input$gid
+    rates$len_f[1:be] <- 0
+    rates$len_f[(be + 1):(min(be + pb_l, tl))] <- head(lenv, tl - be)
 
-    rates_p_approx  <- approxfun(rates$Time, rates$gr_p,  rule = 2)
-    rates_f1_approx <- approxfun(rates$Time, rates$gr_f1, rule = 2)
-    rates_dp_approx <- approxfun(rates$Time, rates$dr_p,  rule = 2)
+    p_lenappro <- approxfun(rates$Time, rates$len_p,  rule = 2)
+    f_lenappro <- approxfun(rates$Time, rates$len_f,  rule = 2)
 
-    xstart <- c(p_p  = input$p_conc, p_f1 = alpha_ * input$p_conc)
-    
-    parms <- c(r0_p = p_,
-               r0_f1 = f1_,
-               p0 = unname(xstart[1] + xstart[2]))
-    
+
+    xstart <- c(p_p = input$p_conc, p_f1 = a__ * input$p_conc)
+
+    parms <- c(r0_p  = input$growth_rate_p,
+               r0_f1 = fgr,
+               d0_p  = input$death_rate,
+               p0 = unname(xstart[1] + xstart[2]) *
+                           allorates(input$maxlen, 0, 0)$N)
+
     out <- ode(y = xstart, times = times, func = model, parms = parms,
-                 approx_gp = rates_p_approx, approx_gf1 = rates_f1_approx, approx_dp = rates_dp_approx)
+               approx_len_p = p_lenappro, approx_len_f1 = f_lenappro,
+               allo_rates = allorates)
 
     colnames(out) <- c("Time", "Parental concentration", "F1 concentration")
     return(out)
