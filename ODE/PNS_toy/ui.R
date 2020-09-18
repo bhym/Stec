@@ -12,7 +12,9 @@ fluidPage(titlePanel("Diatom P vs F1 toy model"),
       numericInput(inputId = "growth_rate_f1",         label = "F1 growth rate when not blocked",                    step = 0.01, min = 0, max = 10,   value = 1.2),
       numericInput(inputId = "time_to_reach_min_size", label = "Time needed to reach non-viable size",               step = 1,    min = 0, max = 500,  value = 10),
       numericInput(inputId = "dday",                   label = "Day of gametogenesis-induced death of P generation", step = 1,    min = 0, max = 500,  value = 3),
-      numericInput(inputId = "gid",                    label = "Parental gametogenesis-induced death rate",          step = 0.01, min = 0, max = 1,    value = 0.8)
+      numericInput(inputId = "gid",                    label = "Parental gametogenesis-induced death rate",          step = 0.01, min = 0, max = 1,    value = 0.8),
+      numericInput(inputId = "carcap",                 label = "Carrying capacity",                                  step = 0.01, min = 0.1, max = 1E6,    value = 0.8)
+
       ),
     mainPanel(
               plotlyOutput(outputId = "plot"),

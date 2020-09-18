@@ -8,7 +8,7 @@ function(input, output) {
       r_f1 <- approx_gf1(t)
       d_p <- approx_dp(t)
     # ma <- 1 - t/11
-      k <- 1 - (p_p + p_f1) / p0
+      k <- 1 - (p_p + p_f1) / (p0 * input$carcap)
       dp_p  <- r0_p  * k * gr_p  * p_p  - d_p * p_p
     # dp_p  <- r0_p  * k * gr_p  * p_p  - m * ifelse(1 - gr_p != 0, gr_p,0.5) * p_p
     # dp_p  <- r0_p  * k * gr_p  * p_p  - m * ifelse(ma > 0, ma,0.6) * p_p
