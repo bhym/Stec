@@ -5,7 +5,7 @@ library("furrr")
 # This if you want to run the sweep
 library("deSolve")
 
-source("model_N_s.R")
+source("model.R")
 source("parms.R")
 
  range_tga <- seq(1, 5, 1)
