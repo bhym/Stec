@@ -1,5 +1,4 @@
-
-mollo <- function(tga,fgr,a__) {
+mollo <- function(dfac, f1is, r0p, r0f, tga) {
   d0 <- 0
   allorates <- function(len, r0, d0) {
       bv   <- (len * 9) / 2
@@ -32,7 +31,7 @@ mollo <- function(tga,fgr,a__) {
       p_ar <- allo_rates(p_len, r0_p, d0)
       f_ar <- allo_rates(p_len, r0_f1, d0)
 
-      blole <- input$growth_block_start + input$growth_block_length
+      blole <- input$growth_block_start + tga
       t1aps <- input$f1_injection_step
 
       nc_ <- c(p_p * p_ar$N, p_f1 * f_ar$N)
@@ -53,7 +52,7 @@ mollo <- function(tga,fgr,a__) {
     bs    <- input$growth_block_start
     len   <- input$growth_block_length
     be    <- input$growth_block_start + len
-    tf1b  <- input$f1_injection_step
+    tf1b  <- f1is
 
     lenv_p  <- input$initlen_p:input$minlen
     lenv_f  <- input$initlen_f:input$minlen
@@ -82,10 +81,10 @@ mollo <- function(tga,fgr,a__) {
 
     xstart <- c(p_p = input$p_conc, p_f1 = input$alpha_ * input$p_conc)
 
-    parms <- c(r0_p  = input$growth_rate_p,
-               r0_f1 = input$growth_rate_f1,
+    parms <- c(r0_p  = r0p,
+               r0_f1 = r0f,
                d0    = input$death_rate,
-               dfac  = input$dfac,
+               dfac  = dfac,
                p0    = unname(xstart[1] *
                               c(allorates(input$initlen_p, 0, 0)$N)) *
                               input$k
