@@ -31,18 +31,90 @@ ad un burst iniziale che riesce anche un po' perch' le parentali si bloccano e p
 Comunque non c'e' una vera competizione tra parentali e figlie ma potrebbe esserci tra figlie ed il resto della comunita' ma qui entra in gioco la crescita netta, che potrebbe aumenatre per un m piu' basso dovuto alla taglia decrescente ma compensa da un r crescente per la riduzione di taglia
 Percio' credo che vada esplorato m piu' che rP:rP mentre alpha andrebbe analizzato rispetto a tutta la comunita'
 
-ovviamente abbiamo un problema di Carrying Capacity nel senso che cosi' crescono all'infinito. A questo punto io porrei come carrying capacity il numero iniziale delle parentali. Cioe' se campavano prima al punto da raggiungere i valori soglia consideriamo quello come la quota di risorse a loro destinata. Quindi le figlie crescono fino a che (abbiamo bisogno di sapere le quote di N delle parentali e delle figlie, ma si puo' ricavare dall'assimilazione) non sono arrivate insieme alle parentali alla vecchia carrying capacity. Poi se le parentali muoiono un po' piu' di loro la nuova generazione si consolida. Credo che questo scenario sia abbastanza vicino alla realta'. Il GA delle parentali permette il primo inoculo. Le fluttuazioni nelle abbondanze (Marina, Valeria et al. hanno vari lavori sulla dinamica di popolazione di Pm) credo dipendano dal maggiore o minore successo della fase sessuale che, tra l'altro, avviene ogni due anni per sottopopolazione.
-
-piu' o meno con un +- nel range. Noi sospettiamo che quelle dei primi due giorni siano la nuova coorte, poi l'aumento potrebbe essere dovuto a nuove F1 o a F2 (sono indistinguibili) quindi dobbiamo dare un po' di elasticita' anche ai valori
+ovviamente abbiamo un problema di Carrying Capacity nel senso che cosi' crescono all'infinito.
+A questo punto io porrei come carrying capacity il numero iniziale delle parentali.
+Cioe' se campavano prima al punto da raggiungere i valori soglia consideriamo quello come la quota di risorse a loro destinata.
+Quindi le figlie crescono fino a che (abbiamo bisogno di sapere le quote di N delle parentali e delle figlie, ma si puo' ricavare dall'assimilazione) non sono arrivate insieme alle parentali alla vecchia carrying capacity.
+Poi se le parentali muoiono un po' piu' di loro la nuova generazione si consolida.
+Credo che questo scenario sia abbastanza vicino alla realta'.
+Il GA delle parentali permette il primo inoculo.
+Le fluttuazioni nelle abbondanze (Marina, Valeria et al. hanno vari lavori sulla dinamica di popolazione di Pm) credo dipendano dal maggiore o minore successo della fase sessuale che, tra l'altro, avviene ogni due anni per sottopopolazione.
+piu' o meno con un +- nel range.
+Noi sospettiamo che quelle dei primi due giorni siano la nuova coorte, poi l'aumento potrebbe essere dovuto a nuove F1 o a F2 (sono indistinguibili) quindi dobbiamo dare un po' di elasticita' anche ai valori
 P->F1 e rF
 
-dal tuo grafico le parentali diminuiscono di 2000. Con l'andamento di Rossella al giorno 4.5 le parentali sono al numero dell'inizio mentre le figlie sono a 120, diciamo che in risorse limitate sarebbero a ~240 di meno o anche un po' di meno (nel file di Ros ci sono i biovolume e le quote gia' cacolati 😀) Le figlie rimangono sempre una frazione molto piccola ma a quel punto prendono la loro quota e continuano a dividersi. Se poi aumenta mP, come credo, si ha il rinnovo
+dal tuo grafico le parentali diminuiscono di 2000.
+Con l'andamento di Rossella al giorno 4.5 le parentali sono al numero dell'inizio mentre le figlie sono a 120, diciamo che in risorse limitate sarebbero a ~240 di meno o anche un po' di meno (nel file di Ros ci sono i biovolume e le quote gia' cacolati 😀) Le figlie rimangono sempre una frazione molto piccola ma a quel punto prendono la loro quota e continuano a dividersi.
+Se poi aumenta mP, come credo, si ha il rinnovo
 
 
-ok credo che piu' o meno ci siamo. Dobbiamo solo decidere se mostrare un'esplorazione nello spazio dei parametri, Di fatto abbiamo rF, rP, alpha, importante per il numero di reclute al termine del GA, durata del GA e, soprattutto mP. Sono un po' troppi per una rappresentazione grafica semplice. Potremmo ridurre le dimensioni vincolando rF e rP ed mP all'allometria (e quindi mettere come variabile il rapporto di taglie) e aggregando durata GA e alpha che determinano insieme il numero di reclute (condensato in alpha). Dovrebbe venir fuori che se loro partono col sesso quando sono molto piccole l'aumento di rP e' relativamente piccolo ma mP sale parecchio e quindi aumento lo'spazio' per le reclute. Sara' un po' complicato da spiegare ma si puo' fare.
+ok credo che piu' o meno ci siamo.
+Dobbiamo solo decidere se mostrare un'esplorazione nello spazio dei parametri, Di fatto abbiamo rF, rP, alpha, importante per il numero di reclute al termine del GA, durata del GA e, soprattutto mP.
+Sono un po' troppi per una rappresentazione grafica semplice.
+Potremmo ridurre le dimensioni vincolando rF e rP ed mP all'allometria (e quindi mettere come variabile il rapporto di taglie) e aggregando durata GA e alpha che determinano insieme il numero di reclute (condensato in alpha).
+Dovrebbe venir fuori che se loro partono col sesso quando sono molto piccole l'aumento di rP e' relativamente piccolo ma mP sale parecchio e quindi aumento lo'spazio' per le reclute.
+Sara' un po' complicato da spiegare ma si puo' fare.
 
 tutte si bloccano e solo alcune possono fare meiosi
 paper di marina che ha messo in fondo alle note (parlava di decisioni)
 quali sono le dimensioni del parameter sweep? rp/rf; momento di avvio della F1, mortalita'
 figura e parametro medoti e risultato modello
 
+Porponevo di suddividere gli intervalli della simulazione dal tempo d'inizio (t0) che possiamo fissare come tempo d'inizio del Growth Arrest (GA) al tempo in cui finisce il GA (tGA).
+In questo periodo le parentali sono bloccate (rP=0) mentre c'e' la mortalita' da gametogenesi (mP>0) (questo e' un parametro da esplorare tra valori realistici).
+Durante il GA nascono le F1 ad un tempo tf1.
+tf1 puo' essere minore di tGA, uguale a tGA o maggiore di tGA.
+Nei nsotri exp e' minore di tGA ma anche questo sarebbe da esplorare.
+Dal tempo tf1 inizia la crescita delle F1 con un tasso rF (terzo parametro da esplorare).
+Dopo tGA le parentali riprendono e quindi rP>0 (quarto paraametro da esplorare magari come rapporto su rF1.
+Infine dopo tGA scattano la nuova mortalita' per le parentali mP mentre la moratita' delle figlie mF scatta da tF1.
+Dalla discussione che avemmo la simulazione dovrebbe durare solo una decina di giorni e non dovremmo piu' cercare il cross.
+L'idea e' che una volta superato il GA la competizione tra P e F decade perche' non stanno piu' insieme nel microvolume ed fermierestando le due crescite e mortalita' differenti allometriche, la carrying capacity la possiamo imporre con una mortalita' random su tutti che mantenga un numero di cellule comparabile a quello prima di t0, come nel modello di DOM.
+La carrying capacity dell'intervallo t0->tGA o tGA+1 e' invece il contenuto di azoto iniziale che puo' essere solo il contenuto delle parentali (quindi solo riciclo) o anche un po' in piu' (azoto disponibile nel microvolume).
+Quindi P e F sono consorziate nei giorni dell'evento e forse anche il giorno dopo e poi ognuno per la sua strada.
+Quindi rimaniamo lontani dalla mortalita' per raggiungimento taglia critica
+
+
+perfetto! Lo possiamo usare anche nel paper, e comunque per spiegarlo alle girls.
+La freccia blu (la farei di un altro colore) in basso, non lo sappiamo (ma e' da chiarire) potrebbe superare tGA.
+tfin e' 10 ma potrebbe essere minore o maggiore.
+Un vincolo potrebbe il Deborah number che e' legato allo shear rate.
+Solo che non sappiamo quale sia se loro fanno biofilm o simili.
+Ma lo affrontiamo nella discussione.
+Intuitivamente io la immagino cosi: fare sesso ha un costo fisiologico.
+Idealmente varrebbe la pena che lo pagassero in pochi ma questo ha due effetti potenzialmente negativi: le parentali che competono con le figlie che sono in un certo senso 'neoteniche', cioe' hanno bisogno di tempo per decollare; il rischio che se sono poco nessuno riesce a fare gameti (cosa osservata in lab e da citare).
+Quindi una subpopolazione si coordina in maniera collettiva creando un microambiente che permette ad alcune che si incontrano di figliare, mentre altre muoiono ed altre stanno in attesa del potenziale marito.
+Tutto questo crea un contesto che finisce per favorire anche le figlie nella misura in cui (scenari del modello).
+Poi parentali e figlie seguono differenti rates ma sono esposte agli stessi fattori ed il ricambio avviene per la scomparsa delle piccole (come nel modello di Dom).
+Credo che mettere insieme i due modelli possa servire a DISCO e ci puo' uscire pure un lavoretto, soprattutto se ci aggiungiamo una variabile di diversita' intraspecifica, facendolo diventare un modello anche di genetica di popolazione.
+
+
+Assumptions: 
+1. I assume that net growth rate is the balance between size-dependent cell proliferation and death
+2. I assume that P suffers extra mortality during growth arrest due to gametogenesis
+3. I assume that P basal growth rate is higher than F1 basal growth rate
+4. I assume that lenght decreses 1 um after each division
+5. I assume that P has reached the environmental carrying capacity before starting the simulation
+
+The simulation starts with the parent population (P) in growth arrest, and ends after nine days
+During the growth arrest, P does not grow and suffers from extra mortality
+After a certain number of days of growth arrest, P reproduces sexually, and the offspring population (F1) appears
+As soon as it appears, F1 starts to grow, and its net growth rate decrease in time
+When the growth arrest stops, P resume its growth, with its net growth rate decreasing in time
+
+P and F1 competes for N; their growth rate decrease as the total population (F1 + P) converges toward the carrying capacity
+
+I express the carrying capacity (k) in terms of nitrogen; due to assumption (5) I can calculate k as
+[P0] * [N]p
+where [N]p is the Nitrogen content of a single cell, and [P]0 is the parental cell concentration at the beginning of the growth arrest.
+
+at each step I calcualte
+N limitation and allometric growth  scaling
+the variation in concentration of P and F1
+
+
+Explore
+# appearence time of F1
+# growth duration
+# rP (given that rF is 1)
+# extra mortality
