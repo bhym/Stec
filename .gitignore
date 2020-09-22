@@ -1,2 +1,5 @@
 ODE/PNS_toy/rsconnect/
 ODE/batch/*.rds
+draft.aux
+draft.log
+draft.out
