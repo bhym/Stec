@@ -46,6 +46,7 @@ plc <- lsw_a %>%
          ylab(expression(r[p] : r[f1])) +
          scale_y_log10()
 
-dev.new(); pla
-dev.new(); plb
-dev.new(); plc
+
+#ggsave("../../report/imgs/a.pdf", pla)
+#ggsave("../../report/imgs/b.pdf", plb)
+#ggsave("../../report/imgs/c.pdf", plc)
