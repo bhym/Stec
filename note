@@ -88,33 +88,3 @@ Tutto questo crea un contesto che finisce per favorire anche le figlie nella mis
 Poi parentali e figlie seguono differenti rates ma sono esposte agli stessi fattori ed il ricambio avviene per la scomparsa delle piccole (come nel modello di Dom).
 Credo che mettere insieme i due modelli possa servire a DISCO e ci puo' uscire pure un lavoretto, soprattutto se ci aggiungiamo una variabile di diversita' intraspecifica, facendolo diventare un modello anche di genetica di popolazione.
 
-
-Assumptions: 
-1. I assume that net growth rate is the balance between size-dependent cell proliferation and death
-2. I assume that P suffers extra mortality during growth arrest due to gametogenesis
-3. I assume that P basal growth rate is higher than F1 basal growth rate
-4. I assume that lenght decreses 1 um after each division
-5. I assume that P has reached the environmental carrying capacity before starting the simulation
-
-The simulation starts with the parent population (P) in growth arrest, and ends after nine days
-During the growth arrest, P does not grow and suffers from extra mortality
-After a certain number of days of growth arrest, P reproduces sexually, and the offspring population (F1) appears
-As soon as it appears, F1 starts to grow, and its net growth rate decrease in time
-When the growth arrest stops, P resume its growth, with its net growth rate decreasing in time
-
-P and F1 competes for N; their growth rate decrease as the total population (F1 + P) converges toward the carrying capacity
-
-I express the carrying capacity (k) in terms of nitrogen; due to assumption (5) I can calculate k as
-[P0] * [N]p
-where [N]p is the Nitrogen content of a single cell, and [P]0 is the parental cell concentration at the beginning of the growth arrest.
-
-at each step I calcualte
-N limitation and allometric growth  scaling
-the variation in concentration of P and F1
-
-
-Explore
-# appearence time of F1
-# growth duration
-# rP (given that rF is 1)
-# extra mortality
