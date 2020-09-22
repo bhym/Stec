@@ -16,14 +16,14 @@
   \section*{The hypothetical adaptive value of the generalized growth arrest and the constraints for a successful sex event}
     Molecular, biophysical and chemical data all unequivocally show that the pennate \textit{P. multistriata}, during events of mating and gametogenesis blocks growth and mitosis for a few days, three in the experiment discussed here, xx in the experiment discussed by Scalco et al.
 
-    To analyze the impact of such response on population dynamics, we developed a simple process-based model of the sexual reproduction event (\textbf{Fig.~\ref{fdyn}}), where net growth is the balance between size-dependent cell proliferation and death.
-    Within the model, a cell population (P) that reached the carrying capacity enter the sexual reproduction phase, stopping its growth and suffering for extra mortality due to gametogenesis.
-    After a certain number of growth arrest days, P reproduces sexually, and an offspring population (F1) appears and start to proliferates.
+    To analyze the impact of such behavior on population dynamics, we developed a simple process-based model of the sexual reproduction event (\textbf{Fig.~\ref{fdyn}}), where net growth is the balance between size-dependent cell proliferation and death.
+    Within the model, a cell population (P) that reached the carrying capacity enters the sexual reproduction phase, stopping its growth and suffering for extra mortality due to gametogenesis.
+    After a certain number of growth arrest days, P reproduces sexually, and an offspring population (F1) appears and starts to proliferate.
     When the growth arrest stops, P resumes its growth.
     During the entire course of the simulation (set to ten days) cell growth is modulated by cell size and by competition over Nitrogen.
     Our fundamental assumption, as will be discussed later, is that parents and daughters cells share a common, exclusive microvolume, so that P and F1 compete for N. This is translated in the model as a decrease in growth rate as the total population (F1 + P) converges toward the carrying capacity.
 
-    We chose gametogenesis-induced extra mortality ($d$), growth rates ratio ($g_{0,P}/g_{0,F_{1}}$), day of appearance ($t_{F_{1}I}$), and duration of the growth block (as the block's end day $t_{GE}$) as salient parameters to explore within the simulation to better understand how event timing impact over F1 survival rate (\textbf{Figs.~\ref{gon1},~\ref{gon2},~\ref{gon3}}).
+    We chose gametogenesis-induced extra mortality ($d$), growth rates ratio ($g_{0,P}/g_{0,F_{1}}$), day of appearance ($t_{F_{1}I}$), and duration of the growth block (as the block's end day $t_{GE}$) as salient parameters to explore within the simulation to better understand how event timing impacts over F1 survival rate (\textbf{Figs.~\ref{gon1},~\ref{gon2},~\ref{gon3}}).
     The range of variations of the different parameters, as well as the value of the other biological parameters, are reported in \textbf{Table~\ref{tbl1}}.
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
 
@@ -72,7 +72,7 @@
     \[
       L_{t} = L_{0} - 0.1 a(t)
     \]
-    Age is counted from the appearence of the population, and does not increase during GA.\@
+    Age is counted from the appearance of the population, and does not increase during GA.\@
 
     Finally, $\delta$ is an extra mortality term defined as
     \[
@@ -99,7 +99,7 @@
             $d$             & gametogenesis-induced extra mortality      & day               & ${[0.1,0.9]}$ & Explored via simulations\\
             $L_{0,P}$       & starting length for P cells                &$\mu$m             & 40            & The experiment detailed in the paper\\
             $L_{0,{F_{1}}}$ & starting length for P cells                &$\mu$m             & 55            & The experiment detailed in the paper\\
-            $minlen$        & length lower limit for cell division       &$\mu$m             & 38            & D'Alelio et al. (2009)\\
+            $j$             & length lower limit for cell division       &$\mu$m             & 38            & D'Alelio et al. (2009)\\
           \bottomrule
         \end{tabular}
       \end{table}
