@@ -22,9 +22,8 @@ lsw_a <-  lsw %>%
 
 breaks <- c(0, 1, by = 0.1)
 
-## for lsw_out_a_ratio.rds
 pla <- lsw_a %>%
-         filter(ranf1is == 3) %>%
+         filter(ranf1is == 3, ranalp == 0.01) %>%
          pl_parsub(randfac, ranr0p, breaks) +
          facet_wrap(~rantga) +
          xlab("P gametogenesis-induced death") +
@@ -32,21 +31,31 @@ pla <- lsw_a %>%
          scale_y_log10()
 
 plb <- lsw_a %>%
-         filter(ranr0p == 1) %>%
+         filter(ranr0p == 1, ranalp == 0.01) %>%
          pl_parsub(randfac, ranf1is, breaks) +
          facet_wrap(~rantga) +
          xlab("P gametogenesis-induced death") +
          ylab("Day of F1 appearence")
 
 plc <- lsw_a %>%
-         filter(randfac == 0.8) %>%
+         filter(randfac == 0.8, ranalp == 0.01) %>%
          pl_parsub(ranf1is, ranr0p, breaks) +
          facet_wrap(~rantga) +
          xlab("Day of F1 appearence") +
          ylab(expression(r[p] : r[f1])) +
          scale_y_log10()
 
+pld <- lsw_a %>%
+         filter(randfac == 0.8, ranf1is == 3) %>%
+         pl_parsub(ranalp, ranr0p, breaks) +
+         facet_wrap(~rantga) +
+         xlab("\u03B1") +
+         ylab(expression(r[p] : r[f1])) +
+         scale_y_log10()
 
-#ggsave("../../report/imgs/a.pdf", pla)
-#ggsave("../../report/imgs/b.pdf", plb)
-#ggsave("../../report/imgs/c.pdf", plc)
+
+
+ggsave("../../report/imgs/a.pdf", pla)
+ggsave("../../report/imgs/b.pdf", plb)
+ggsave("../../report/imgs/c.pdf", plc)
+ggsave("../../report/imgs/d.pdf", pld)
