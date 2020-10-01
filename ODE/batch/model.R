@@ -1,4 +1,4 @@
-mollo <- function(dfac, f1is, r0p, r0f, tga) {
+mollo <- function(dfac, r0p, r0f, tga, f1is, alp) {
   d0 <- 0
   allorates <- function(len, r0, d0) {
       bv   <- (len * 9) / 2
@@ -9,7 +9,7 @@ mollo <- function(dfac, f1is, r0p, r0f, tga) {
       gr_alloc <- 0.25 + 0.04 * len - 0.0005 * len ^ 2
       de_alloc <- 0.40 + 0.04 * len - 0.0005 * len ^ 2
 
-      gr   <- d0 * gr_alloc
+      gr   <- r0 * gr_alloc
       de_  <- d0 * de_alloc
 
       res <- list(bv       = bv,
@@ -32,7 +32,7 @@ mollo <- function(dfac, f1is, r0p, r0f, tga) {
       f_ar <- allo_rates(p_len, r0_f1, d0)
 
       blole <- input$growth_block_start + tga
-      t1aps <- input$f1_injection_step
+      t1aps <- f1is
 
       nc_ <- c(p_p * p_ar$N, p_f1 * f_ar$N)
       nc <- sum(nc_)
@@ -79,7 +79,7 @@ mollo <- function(dfac, f1is, r0p, r0f, tga) {
     f_lenappro <- approxfun(rates$Time, rates$len_f,  rule = 2)
 
 
-    xstart <- c(p_p = input$p_conc, p_f1 = input$alpha_ * input$p_conc)
+    xstart <- c(p_p = input$p_conc, p_f1 = alp * input$p_conc)
 
     parms <- c(r0_p  = r0p,
                r0_f1 = r0f,
