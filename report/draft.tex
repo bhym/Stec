@@ -24,7 +24,7 @@
     During the entire course of the simulation (set to ten days) cell growth is modulated by cell size and by competition over Nitrogen.
     Our fundamental assumption, as will be discussed later, is that parents and daughters cells share a common, exclusive microvolume, so that P and F1 compete for N. This is translated in the model as a decrease in growth rate as the total population (F1 + P) converges toward the carrying capacity.
 
-    We chose gametogenesis-induced extra mortality ($d$), growth rates ratio ($r_p:r_{f1}$), day of appearance ($t_{F_{1}I}$), and duration of the growth block (as the block's end day $t_{GE}$) as salient parameters to explore within the simulation to better understand how event timing impacts over F1 survival rate (\textbf{Figs.~\ref{gon1},~\ref{gon2},~\ref{gon3},~\ref{gon4}}).
+    We chose gametogenesis-induced extra mortality ($d$), growth rates ratio ($r_p:r_{f1}$), day of appearance ($t_{F_{1}I}$), and duration of the growth arrest (as the arrest's end day $t_{GE}$) as salient parameters to explore within the simulation to better understand how event timing impacts over F1 survival rate (\textbf{Fig.~\ref{swep}}).
     The range of variations of the different parameters, as well as the value of the other biological parameters, are reported in \textbf{Table~\ref{tbl1}}.
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
 
@@ -119,61 +119,26 @@
       \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\linewidth]{imgs/b.pdf}
       \end{subfigure}
-      
-      \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=\linewidth]{imgs/c.pdf}
-      \end{subfigure}
-      %
-      \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=\linewidth]{imgs/d.pdf}
-      \end{subfigure}
-      \caption{\textbf{2D plot of ranges of biomass ratio between P and F1} after 10 days of simulation for paired values of parameters (axes labels). Subplots represent growth arrests of different length.}\label{gon4}
+      \caption{\textbf{2D plot of ranges of biomass ratio between P and F1} after 10 days of simulation for paired values of parameters (axes labels). Subplots represent growth arrests of different length.}\label{swep}
     \end{figure}
-%
-\pagebreak
-%
-    \subsection*{Tabular data}
-        \begin{table}[h]
-          \begin{subtable}[h]{0.45\textwidth}
-            \centering
-            \input{tbls/ranr0p-ranalp_1.tex}
-            \caption{Duration of the growth block: 1 day}
-          \end{subtable}
-          %
-          \begin{subtable}[h]{0.45\textwidth}
-            \centering
-            \input{tbls/ranr0p-ranalp_2.tex}
-            \caption{Duration of the growth block: 2 days}
-          \end{subtable}
+  %
+    \begin{table}[h]
+      \centering
+      {%
+      \begin{subtable}{.5\textwidth}\centering\scriptsize
+        {\input{tbls/randfac-ranr0p_5.tex}}
+        \caption{$d, r_p:r_{f1}$}
+      \end{subtable}
 
-          \vspace{1cm}
-          \begin{subtable}[h]{0.45\textwidth}
-            \centering
-            \input{tbls/ranr0p-ranalp_3.tex}
-            \caption{Duration of the growth block: 3 days}
-          \end{subtable}
-          %
-          \begin{subtable}[h]{0.45\textwidth}
-            \centering
-            \input{tbls/ranr0p-ranalp_4.tex}
-            \caption{Duration of the growth block: 4 days}
-          \end{subtable}
-
-          \vspace{1cm}
-          \begin{subtable}[h]{0.45\textwidth}
-            \centering
-            \input{tbls/ranr0p-ranalp_5.tex}
-            \caption{Duration of the growth block: 5 days}
-          \end{subtable}
-          %
-          \begin{subtable}[h]{0.45\textwidth}
-            \centering
-            \input{tbls/ranr0p-ranalp_6.tex}
-            \caption{Duration of the growth block: 6 days}
-          \end{subtable}
-           \caption{Tabular data for $(\alpha, r_p:r_{f1})$ parameter subspace}\label{tbl2}
-        \end{table}
-   %
+      \vspace{0.5cm}
+      \begin{subtable}{.5\textwidth}\centering\scriptsize
+        {\input{tbls/ranalp-ranr0p_5.tex}}
+        \caption{$\alpha, r_p:r_{f1}$}
+      \end{subtable}
+       \caption{Tabular data for different parameter 2D subspaces and growth arrest duration of 5 days}\label{tbl2}
+     }
+    \end{table}
+%
   \section*{Assumptions} 
     \begin{enumerate}
       \item I assume that net growth rate is the balance between size-dependent cell proliferation and death
