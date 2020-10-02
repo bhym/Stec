@@ -12,7 +12,7 @@ function(input, output) {
       gr_alloc <- 0.25 + 0.04 * len - 0.0005 * len ^ 2
       de_alloc <- 0.40 + 0.04 * len - 0.0005 * len ^ 2
 
-      gr   <- d0 * gr_alloc
+      gr   <- r0 * gr_alloc
       de_  <- d0 * de_alloc
 
       res <- list(bv       = bv,
@@ -42,7 +42,7 @@ function(input, output) {
       k <- 1 -  (nc / p0)
 
       dp_p  <- r0_p * ifelse(t < blole, 0, p_ar$gr_alloc) * k * p_p  -
-               ifelse(t < blole, dfac, 0) * p_p
+               ifelse((t >= t1aps - 1 & t <= t1aps + 1), dfac, 0) * p_p
       dp_f1 <- r0_f1 * ifelse(t < t1aps, 0, f_ar$gr_alloc) * k * p_f1
       res <- c(dp_p, dp_f1)
       list(res)
