@@ -1,6 +1,7 @@
 \documentclass[a4paper,oneside]{book}
 
   \usepackage{graphicx}
+  \usepackage{subcaption}
   \usepackage{xcolor}
   \usepackage{amsmath}
   \usepackage{hyperref}
@@ -23,13 +24,16 @@
     During the entire course of the simulation (set to ten days) cell growth is modulated by cell size and by competition over Nitrogen.
     Our fundamental assumption, as will be discussed later, is that parents and daughters cells share a common, exclusive microvolume, so that P and F1 compete for N. This is translated in the model as a decrease in growth rate as the total population (F1 + P) converges toward the carrying capacity.
 
-    We chose gametogenesis-induced extra mortality ($d$), growth rates ratio ($g_{0,P}/g_{0,F_{1}}$), day of appearance ($t_{F_{1}I}$), and duration of the growth block (as the block's end day $t_{GE}$) as salient parameters to explore within the simulation to better understand how event timing impacts over F1 survival rate (\textbf{Figs.~\ref{gon1},~\ref{gon2},~\ref{gon3}}).
+    We chose gametogenesis-induced extra mortality ($d$), growth rates ratio ($r_p:r_{f1}$), day of appearance ($t_{F_{1}I}$), and duration of the growth block (as the block's end day $t_{GE}$) as salient parameters to explore within the simulation to better understand how event timing impacts over F1 survival rate (\textbf{Figs.~\ref{gon1},~\ref{gon2},~\ref{gon3},~\ref{gon4}}).
     The range of variations of the different parameters, as well as the value of the other biological parameters, are reported in \textbf{Table~\ref{tbl1}}.
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
 
     \begin{figure}[h]
       \includegraphics[width=\linewidth]{imgs/Figpan.pdf}
-      \caption{\textbf{Time dynamics of the model} --- \textit{(a)} dependence of relative growth rate from length; \textit{(b)} Cell shortening dynamics for the two populations; examples of simulation outputs whith $g_{0,P} >g_{0,F_{1}}$ (1.06 and 0.58, respectively) \textit{(c)} and $g_{0,P} = g_{0,F_{1}}$ \textit{(d)}}\label{fdyn}
+      \caption{\textbf{Time dynamics of the model} ---
+      \textit{(a)} dependence of relative growth rate from length;
+      \textit{(b)} Cell shortening dynamics for the two populations;
+      examples of simulation outputs whith $r_{p} >r_{f1}$ (1.06 and 0.58, respectively) \textit{(c)} and $r_{p} = r_{f1}$ \textit{(d)}}\label{fdyn}
     \end{figure}
 %
   \section*{Model description}
@@ -81,10 +85,8 @@
         0 & \mbox{if } t > t_{BE}
       \end{cases}
     \]
-    
     \subsection*{Parameters}
-      \begin{table}
-        \caption{Values and ranges for model parameters}\label{tbl1}
+      \begin{table}[h]
          \begin{tabular}{@{}llccr@{}}
           \toprule
             \textbf{Variable}&\textbf{Meaning} & \textbf{Value} & \textbf{Units} & \textbf{Reference}\\
@@ -102,29 +104,81 @@
             $j$             & length lower limit for cell division       &$\mu$m             & 38            & D'Alelio et al. (2009)\\
           \bottomrule
         \end{tabular}
+        \caption{Values and ranges for model parameters}\label{tbl1}
       \end{table}
 %
+\pagebreak
+%
   \section*{Results}
-    \begin{figure}
-      \includegraphics[width=\linewidth]{imgs/a.pdf}
-      \caption{\textbf{2D plot of ranges of biomass ratio between P and F1} after 10 days of simulation for paired values of parameters (axes labels). Subplots represent growth arrests of different length.}\label{gon1}
+    \begin{figure}[h]
+      \centering
+      \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{imgs/a.pdf}
+      \end{subfigure}
+      %
+      \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{imgs/b.pdf}
+      \end{subfigure}
+      
+      \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{imgs/c.pdf}
+      \end{subfigure}
+      %
+      \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{imgs/d.pdf}
+      \end{subfigure}
+      \caption{\textbf{2D plot of ranges of biomass ratio between P and F1} after 10 days of simulation for paired values of parameters (axes labels). Subplots represent growth arrests of different length.}\label{gon4}
     \end{figure}
+%
+\pagebreak
+%
+    \subsection*{Tabular data}
+        \begin{table}[h]
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \input{tbls/ranr0p-ranalp_1.tex}
+            \caption{Duration of the growth block: 1 day}
+          \end{subtable}
+          %
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \input{tbls/ranr0p-ranalp_2.tex}
+            \caption{Duration of the growth block: 2 days}
+          \end{subtable}
 
-    \begin{figure}
-      \includegraphics[width=\linewidth]{imgs/b.pdf}
-      \caption{\textbf{2D plot of ranges of biomass ratio between P and F1} after 10 days of simulation for paired values of parameters (axes labels). Subplots represent growth arrests of different length.}\label{gon2}
-    \end{figure}
+          \vspace{1cm}
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \input{tbls/ranr0p-ranalp_3.tex}
+            \caption{Duration of the growth block: 3 days}
+          \end{subtable}
+          %
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \input{tbls/ranr0p-ranalp_4.tex}
+            \caption{Duration of the growth block: 4 days}
+          \end{subtable}
 
-    \begin{figure}
-      \includegraphics[width=\linewidth]{imgs/c.pdf}
-      \caption{\textbf{2D plot of ranges of biomass ratio between P and F1} after 10 days of simulation for paired values of parameters (axes labels). Subplots represent growth arrests of different length.}\label{gon3}
-    \end{figure}
-
-
-
-Assumptions: 
-1. I assume that net growth rate is the balance between size-dependent cell proliferation and death
-2. I assume that P suffers extra mortality during growth arrest due to gametogenesis
-4. I assume that lenght decreses 1 um after each division
-5. I assume that P has reached the environmental carrying capacity before starting the simulation
+          \vspace{1cm}
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \input{tbls/ranr0p-ranalp_5.tex}
+            \caption{Duration of the growth block: 5 days}
+          \end{subtable}
+          %
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \input{tbls/ranr0p-ranalp_6.tex}
+            \caption{Duration of the growth block: 6 days}
+          \end{subtable}
+           \caption{Tabular data for $(\alpha, r_p:r_{f1})$ parameter subspace}\label{tbl2}
+        \end{table}
+   %
+  \section*{Assumptions} 
+    \begin{enumerate}
+      \item I assume that net growth rate is the balance between size-dependent cell proliferation and death
+      \item I assume that P suffers extra mortality during growth arrest due to gametogenesis
+      \item I assume that lenght decreses 1 um after each division
+      \item I assume that P has reached the environmental carrying capacity before starting the simulation
+    \end{enumerate}
 \end{document}
