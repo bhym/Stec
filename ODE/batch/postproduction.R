@@ -1,4 +1,4 @@
-pl_parsub <- function(dat, x_, y_, break__) {
+pl_parsub <- function(dat, x_, y_) {
   x <- dplyr::enquo(x_)
   y <- dplyr::enquo(y_)
   ggplot(dat) +
@@ -38,9 +38,8 @@ lsw_a <-  lsw %>%
                                  1,
                                  Parental.concentration)
          ) %>%
-   mutate(logo = log10(F1.concentration / P.corr))
-
-breaks <- c(0, 1, by = 0.1)
+   mutate(logo = log10(F1.concentration / P.corr)) %>%
+   filter(rantga == ranf1is + 2)
 
 dfa_vs_r0p <- filter(lsw_a, ranf1is == 3,   ranalp == 0.01)
 dfa_vs_f1i <- filter(lsw_a, ranr0p == 1,    ranalp == 0.01)
@@ -48,28 +47,28 @@ f1i_vs_r0p <- filter(lsw_a, randfac == 0.8, ranalp == 0.01)
 alp_vs_r0p <- filter(lsw_a, randfac == 0.8, ranf1is == 3)
 
 pla <- dfa_vs_r0p %>%
-          pl_parsub(randfac, ranr0p, breaks) +
+          pl_parsub(randfac, ranr0p) +
           facet_wrap(~rantga) +
           xlab("P gametogenesis-induced death") +
           ylab(expression(r[p] : r[f1])) +
          coord_cartesian(ylim = c(1, 3))
 
 plb <- alp_vs_r0p %>%
-         pl_parsub(ranalp, ranr0p, breaks) +
+         pl_parsub(ranalp, ranr0p) +
          facet_wrap(~rantga) +
          xlab("\u03B1") +
          ylab(expression(r[p] : r[f1])) +
          coord_cartesian(ylim = c(1, 3))
 
 plc <- f1i_vs_r0p %>%
-         pl_parsub(ranf1is, ranr0p, breaks) +
+         pl_parsub(ranf1is, ranr0p) +
          facet_wrap(~rantga) +
          xlab("Day of F1 appearence") +
          ylab(expression(r[p] : r[f1])) +
          coord_cartesian(ylim = c(1, 3))
 
 pld <- dfa_vs_f1i %>%
-         pl_parsub(randfac, ranf1is, breaks) +
+         pl_parsub(randfac, ranf1is) +
          facet_wrap(~rantga) +
          xlab("P gametogenesis-induced death") +
          ylab("Day of F1 appearence")
