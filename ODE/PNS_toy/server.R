@@ -87,7 +87,7 @@ function(input, output) {
 
     parms <- c(r0_p  = input$growth_rate_p,
                r0_f1 = input$growth_rate_f1,
-               d0    = input$death_rate,
+               d0    = 0,
                dfac  = input$dfac,
                p0    = unname(xstart[1] *
                               c(allorates(input$initlen_p, 0, 0)$N)) *

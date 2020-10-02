@@ -83,7 +83,7 @@ mollo <- function(dfac, r0p, r0f, tga, f1is, alp) {
 
     parms <- c(r0_p  = r0p,
                r0_f1 = r0f,
-               d0    = input$death_rate,
+               d0    = 0,
                dfac  = dfac,
                p0    = unname(xstart[1] *
                               c(allorates(input$initlen_p, 0, 0)$N)) *
