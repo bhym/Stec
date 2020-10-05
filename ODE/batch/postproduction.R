@@ -1,3 +1,4 @@
+# plot generator function
 pl_parsub <- function(dat, x_, y_) {
   x <- dplyr::enquo(x_)
   y <- dplyr::enquo(y_)
@@ -9,6 +10,7 @@ pl_parsub <- function(dat, x_, y_) {
          panel.grid.minor = element_blank())
 }
 
+# table generator function
 tab_parsub <- function(dat, x_, y_) {
   x <- dplyr::enquo(x_)
   y <- dplyr::enquo(y_)
@@ -68,6 +70,24 @@ co_alp_vs_r0p <- alp_vs_r0p %>% filter(ranalp %in% sint, ranr0p %in% fint)
 co_dfa_vs_r0p <- dfa_vs_r0p %>% filter(ranr0p %in% fint)
 tab_parsub(co_alp_vs_r0p, "ranalp",  "ranr0p")
 tab_parsub(co_dfa_vs_r0p, "randfac", "ranr0p")
+
+# extra tabs for alpha vs growth-rate-ratio Maurizio asked
+lsw_a %>%
+filter(ranf1is == 3, ranalp %in% sint, ranr0p %in% fint) %>%
+    select(ranalp, ranr0p, randfac, logo) %>%
+    group_by(randfac) %>%
+    nest %>%
+    mutate(matrici = map(data, ~pivot_wider(.x, names_from = ranalp,
+                                            values_from = logo) %>%
+    arrange(desc(ranr0p)) %>%
+    column_to_rownames("ranr0p"))) %>%
+    ungroup() %>%
+    select(-data) %>%
+    pwalk(function(randfac, matrici, a = "ranalp", b = "ranr0p")
+          kable(matrici, "latex", booktabs = T, digits = 2) %>%
+          save_kable(paste("../../report/tbls/",
+                           a, "-", b, "_",
+                           randfac, ".tex", sep = "")))
 
 ggsave("../../report/imgs/a.pdf", pla, device = cairo_pdf)
 ggsave("../../report/imgs/b.pdf", plb, device = cairo_pdf)
