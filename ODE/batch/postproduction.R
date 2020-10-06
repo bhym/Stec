@@ -42,7 +42,7 @@ lsw_a <-  lsw %>%
                                  Parental.concentration)
          ) %>%
    mutate(logo = log10(F1.concentration / P.corr)) %>%
-   filter(rantga == ranf1is + 2)
+   filter(rantga == ranf1is + 1)
 
 dfa_vs_r0p <- filter(lsw_a, ranf1is == 3,   ranalp == 0.01)
 dfa_vs_f1i <- filter(lsw_a, ranr0p == 1,    ranalp == 0.01)
