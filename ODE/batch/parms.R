@@ -10,6 +10,7 @@ input <- list(
            growth_rate_p          = 1,
            growth_rate_f1         = 1,
            minlen                 = 38,
+           shrinking_step         = 0.1,
            initlen_p              = 40,
            initlen_f              = 55,
            k                      = 1.2

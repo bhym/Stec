@@ -3,8 +3,8 @@ mollo <- function(dfac, r0p, r0f, tga, f1is, alp) {
   allorates <- function(len, r0, d0) {
       bv   <- (len * 9) / 2
 
-      C_   <- 10 ^ ((0.758 * log10(bv)) - 0.421999999999998)
-      N    <- C_ / 12 * 106 / 16
+      c_   <- 10 ^ ((0.758 * log10(bv)) - 0.421999999999998)
+      n    <- c_ / 12 * 106 / 16
 
       gr_alloc <- 0.25 + 0.04 * len - 0.0005 * len ^ 2
       de_alloc <- 0.40 + 0.04 * len - 0.0005 * len ^ 2
@@ -13,8 +13,8 @@ mollo <- function(dfac, r0p, r0f, tga, f1is, alp) {
       de_  <- d0 * de_alloc
 
       res <- list(bv       = bv,
-                  C_       = C_,
-                  N        = N,
+                  C_       = c_,
+                  N        = n,
                   gr_alloc = gr_alloc,
                   de_alloc = de_alloc,
                   gr       = gr,
@@ -54,8 +54,8 @@ mollo <- function(dfac, r0p, r0f, tga, f1is, alp) {
     be    <- input$growth_block_start + len
     tf1b  <- f1is
 
-    lenv_p  <- input$initlen_p:input$minlen
-    lenv_f  <- input$initlen_f:input$minlen
+    lenv_p  <- seq(input$initlen_p, input$minlen, by = -input$shrinking_step)
+    lenv_f  <- seq(input$initlen_f, input$minlen, by = -input$shrinking_step)
     p_pb_l  <- length(lenv_p)
     f_pb_l  <- length(lenv_f)
 
