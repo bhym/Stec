@@ -1,157 +1,166 @@
-\documentclass[a4paper,oneside]{book}
+\documentclass[a4paper,oneside]{article}
 
   \usepackage{graphicx}
   \usepackage{subcaption}
   \usepackage{xcolor}
-  \usepackage{amsmath}
   \usepackage{hyperref}
-  
   \usepackage[cm]{fullpage}
   \usepackage{booktabs}
-  
   \usepackage{lmodern} 
   \usepackage[T1]{fontenc}
   \usepackage{amsmath}
 
 \begin{document}
   \section*{The hypothetical adaptive value of the generalized growth arrest and the constraints for a successful sex event}
-    Molecular, biophysical and chemical data all unequivocally show that the pennate \textit{P. multistriata}, during events of mating and gametogenesis blocks growth and mitosis for a few days, three in the experiment discussed here, xx in the experiment discussed by Scalco et al.
+    Molecular, biophysical and chemical data discussed above unequivocally show that \textit{P.~multistriata}, during events of mating and gametogenesis, blocks growth and mitosis for a few days --- three in the experiment discussed here, and up to six in the one discussed by Scalco et al. (2014).
+    Also, cell number decreases, very likely for enhanced mortality due to the gametogenesis.
 
-    To analyze the impact of such behavior on population dynamics, we developed a simple process-based model of the sexual reproduction event (\textbf{Fig.~\ref{fdyn}}), where net growth is the balance between size-dependent cell proliferation and death.
-    Within the model, a cell population (P) that reached the carrying capacity enters the sexual reproduction phase, stopping its growth and suffering for extra mortality due to gametogenesis.
-    After a certain number of growth arrest days, P reproduces sexually, and an offspring population (F1) appears and starts to proliferate.
-    When the growth arrest stops, P resumes its growth.
-    During the entire course of the simulation (set to ten days) cell growth is modulated by cell size and by competition over Nitrogen.
-    Our fundamental assumption, as will be discussed later, is that parents and daughters cells share a common, exclusive microvolume, so that P and F1 compete for N. This is translated in the model as a decrease in growth rate as the total population (F1 + P) converges toward the carrying capacity.
+    To analyze the impact of such behaviour on population dynamics, we developed a simple process-based model of growth dynamics during the sexual reproduction event, where net growth is the balance between size-dependent cell growth and death.
+    \textbf{The model is conceptually zero-dimensional, and the initial conditions consider the minimal cell concentration recorded by Scalco et al. (2014) as gametogenesis trigger.
+    Cell numbers and available Nitrogen are expressed as abundance and concentration, respectively.}
+    
+    The simulation starts with a cell population ($P$) that enters the sexual reproduction phase after reaching a threshold value of a few thousand cells per ml (see Scalco et al., 2014).
+    During this phase of variable length, the population stop growing and experience a prolonged burst of extra mortality.
+    Within the same span, a $P$ fraction will undergo gametogenesis and generate an offspring population ($F_{1}$) that will start to grow the moment ($t_{F_{1}I}$) it appears.
+    After $t_{AE}$ days, the growth arrest will end and $P$ will resumes its growth alongside $F_{1}$.
 
-    We chose gametogenesis-induced extra mortality ($d$), growth rates ratio ($r_p:r_{f1}$), day of appearance ($t_{F_{1}I}$), and duration of the growth arrest (as the arrest's end day $t_{GE}$) as salient parameters to explore within the simulation to better understand how event timing impacts over F1 survival rate (\textbf{Fig.~\ref{swep}}).
-    The range of variations of the different parameters, as well as the value of the other biological parameters, are reported in \textbf{Table~\ref{tbl1}}.
+    During the entire course of the simulation (set to ten days) cell growth is modulated by competition over Nitrogen and by cell size via an allometric relationship (see D'Alelio et al., 2010).
+    A fundamental assumption, discussed later in the text, is that parental and daughters cells share a common, exclusive space, so that only $P$ and $F_{1}$ compete for N made available in such space.
+    This assumption is translated in the model as a decrease in growth rate as the total population ($F_{1} + P$) converges toward the carrying capacity, set as the total nitrogen content of initial parental cells.
+    
+    To understand better how event timing and response amplitudes impact over $F_1$ recruitment success, we compared simulation outputs across selected parameters range.
+    Our selected parameters are the $P$ fraction that will generate $F_{1}$ ($\alpha$), gametogenesis-induced extra mortality of parental cells ($d$), duration of the growth arrest ($t_{AE}$), and growth rates ratio among parental and initial cells ($r_{P}:r_{F_{1}}$)
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
-
-    \begin{figure}[h]
-      \includegraphics[width=\linewidth]{imgs/Figpan.pdf}
-      \caption{\textbf{Time dynamics of the model} ---
-      \textit{(a)} dependence of relative growth rate from length;
-      \textit{(b)} Cell shortening dynamics for the two populations;
-      examples of simulation outputs whith $r_{p} >r_{f1}$ (1.06 and 0.58, respectively) \textit{(c)} and $r_{p} = r_{f1}$ \textit{(d)}}\label{fdyn}
-    \end{figure}
 %
   \section*{Model description}
     Parental ($P$) and offspring ($F1$) dynamics are defined as ODE:\@
     %
     \begin{align}
-      \frac{dP}{dt}     &= \kappa \beta_{P}     P - \delta P \\
+      \frac{dP}{dt}     &= \kappa \beta_{P} P - \delta P \\
       \frac{dF_{1}}{dt} &= \kappa \beta_{F_{1}} F_{1}
     \end{align}
     %
     where $\kappa$ is the competition for N, defined as
     \[
-      1 - \frac{{[N]}_{t}}{k{[N]}_{t=0}}
+      1 - \frac{{[N]}_{t}}{1.2{[N]}_{t=0}}
     \]
     with 
     \[
       N_{t} = {[P]}_{t} {[N]}_{P} + {[F_{1}]}_{t} {[N]}_{F_{1}}
     \]
-    and $k$ as a parameter used to modulate the carrying capacity.
 
-    $\beta_{P}$  and $\beta_{F_{1}}$ are defined as
+    $\beta_{P}$ and $\beta_{F_{1}}$ are defined as
     \[
       \beta_{P} =
         \begin{cases}
-          0               & \mbox{if } t < t_{BE} \\
-          \lambda g_{0, P} & \mbox{if } t \geq t_{BE}
+          0                    & \mbox{if } t <    t_{AE} \\
+          \lambda_{P}(t) r_{P} & \mbox{if } t \geq t_{AE}
         \end{cases}
       \qquad;\qquad
       \beta_{F_{1}} = 
         \begin{cases}
-          0                   & \mbox{if } t < t_{F_{1}I} \\
-          \lambda g_{0, F_{1}} & \mbox{if } t \geq t_{F_{1}I}
+          0                            & \mbox{if } t <    t_{F_{1}I} \\
+          \lambda_{F_{1}}(t) r_{F_{1}} & \mbox{if } t \geq t_{F_{1}I}
         \end{cases}
     \]
-    with $\lambda$ representing allometric scaling on length ($L$), defined as
+    with $\lambda_i(t)$ representing allometric scaling on length ($L$), defined as
     \[
-      0.25 + 0.04 L_{t} - 0.0005 L_{t}^{2}
+      \lambda_{i}(t) = 0.25 + 0.04 L_{i}(t) - 0.0005 L_{i}{(t)}^{2}
     \]
     Length dynamics are based on cell's age ($a$) and are defined by the rule
     \[
-      L_{t} = L_{0} - 0.1 a(t)
+      L_{i}(t) = L_{0,i} - 0.1 a(t) \hspace{8mm}\text{with $i$ either $P$ or $F_{1}$}
     \]
     Age is counted from the appearance of the population, and does not increase during GA.\@
 
     Finally, $\delta$ is an extra mortality term defined as
     \[
       \begin{cases}
-        d & \mbox{if } t < t_{BE} \\
-        0 & \mbox{if } t > t_{BE}
+        d & \mbox{if } t < t_{AE} \\
+        0 & \mbox{if } t > t_{AE}
       \end{cases}
     \]
-    \subsection*{Parameters}
-      \begin{table}[h]
-         \begin{tabular}{@{}llccr@{}}
-          \toprule
-            \textbf{Variable}&\textbf{Meaning} & \textbf{Value} & \textbf{Units} & \textbf{Reference}\\
-          \midrule
-            ${[P]}_{0}$     & initial concentration of P cells           & cells/ml          & 4E3           & The experiment detailed in the paper\\
-            $\alpha$        & relative amount of F1 cells                & ---               & 0.012         & The experiment detailed in the paper\\
-            $k$             & nitrogen multiplication factor             & ---               & 1.2           & ---\\
-            $g_{0, P}$      & basal growth rate for parental generation  & $\text{day}^{-1}$ & {[0.1,5]}     & Explored via simulations\\
-            $g_{0, F_{1}}$  & basal growth rate for offspring generation & $\text{day}^{-1}$ & 1             & ---\\
-            $t_{BE}$        & end day of the growth arrest               & day               & ${[1,9]}$     & Explored via simulations\\
-            $t_{F_{1}I}$    & day of appearence of the offspring         & day               & ${[1,9]}$     & Explored via simulations\\
-            $d$             & gametogenesis-induced extra mortality      & day               & ${[0.1,0.9]}$ & Explored via simulations\\
-            $L_{0,P}$       & starting length for P cells                &$\mu$m             & 40            & The experiment detailed in the paper\\
-            $L_{0,{F_{1}}}$ & starting length for P cells                &$\mu$m             & 55            & The experiment detailed in the paper\\
-            $j$             & length lower limit for cell division       &$\mu$m             & 38            & D'Alelio et al. (2009)\\
-          \bottomrule
-        \end{tabular}
-        \caption{Values and ranges for model parameters}\label{tbl1}
-      \end{table}
-%
-\pagebreak
-%
-  \section*{Results}
-    \begin{figure}[h]
-      \centering
-      \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=\linewidth]{imgs/a.pdf}
-      \end{subfigure}
-      %
-      \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=\linewidth]{imgs/b.pdf}
-      \end{subfigure}
-      \caption{\textbf{2D plot of ranges of biomass ratio between P and F1} after 10 days of simulation for paired values of parameters (axes labels). Subplots represent growth arrests of different length.}\label{swep}
-    \end{figure}
-  %
-    \begin{table}[h]
+    The parameters values and ranges are reported in \textbf{Table~\ref{tbl1}}.
+    %
+    \begin{table}
       \centering
       {%
-      \begin{subtable}{.5\textwidth}\centering\scriptsize
-        {\input{tbls/ranalp-ranr0p_0.2.tex}}
-        \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.2$}
-      \end{subtable}
-      \begin{subtable}{.5\textwidth}\centering\scriptsize
-        {\input{tbls/ranalp-ranr0p_0.4.tex}}
-        \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.4$}
-      \end{subtable}
-      \begin{subtable}{.5\textwidth}\centering\scriptsize
-        {\input{tbls/ranalp-ranr0p_0.6.tex}}
-        \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.6$}
-      \end{subtable}
+        \begin{tabular}{@{}llccr@{}}
+          \toprule
+          \textbf{Variable}&\textbf{Meaning} & \textbf{Units} & \textbf{Value} & \textbf{Reference}\\
+          \midrule
+          ${P}_{0}$       & initial concentration of $P$ cells         & cells/ml          & 4E3         & Experiment detailed in the paper\\
+          $\alpha$        & fraction of $P$ that will generate $F_{1}$ & ---               & [0.01, 0.2] & Explored via simulations\\
+          $r_{P}$         & net growth rate of $P$                     & $\text{day}^{-1}$ & [1, 3]      & Explored via simulations\\ 
+          $r_{F_{1}}$     & net growth rate of $F_{1}$                 & $\text{day}^{-1}$ & 1           & ---\\
+          $t_{AE}$        & end day of the growth arrest               & day               & 4           & Experiment detailed in the paper\\
+          $t_{F_{1}I}$    & day of appearence of the offspring         & day               & 3           & Experiment detailed in the paper\\
+          $L_{0,P}$       & starting length for $P$ cells              & $\mu$m            & 40          & Experiment detailed in the paper\\
+          $L_{0,{F_{1}}}$ & starting length for $F_{1}$ cells          & $\mu$m            & 80          & Experiment detailed in the paper\\
+          $d$             & gametogenesis-induced extra mortality      & day               & [0.1, 0.9]  & Explored via simulations\\
+          \bottomrule
+        \end{tabular}
+       }
+      \caption{Values and ranges for model parameters}\label{tbl1}
+    \end{table}
+%
+  \section*{Results}
+    \textbf{Fig.~\ref{fdyn}} shows the relative variation of allometric growth (panel a), the size reduction of $P$ and $F_{1}$ during the simulations (panel b) and variation of $P$ and $F_{1}$ densities for two different sets' of parameter values (panels c and d) \textbf{reported in the legend}.
+    We simulated a wide set of scenarios corresponding to the chosen ranges of variation of the different parameters reported in \textbf{Table~\ref{tbl1}} focusing, as output variable, on the recruitment success of the offsprings quantified as the ratio between $F_{1}$ and $P$, after ten days from the start of mating.
+    \textbf{Fig.~\ref{swep}} shows the logarithm of the ratio in relation to different values of the parameters or their combination.
+    %
+    \begin{figure}[p]
+      \includegraphics[width=\linewidth]{imgs/Figpan.pdf}
+      \caption{\textbf{Simulated size dependent growth and impact on the population dynamics} ---
+      \textit{(a)} dependence of specific growth rate on cell length;
+      \textit{(b)} Size reduction for the two sub-populations;
+      examples of simulation outputs whith $r_{p} = 1.82$ \textit{(c)} and $r_{p} = 1$ \textit{(d)}.
+      In \textit{(c)} and \textit{(d)}: $\alpha=0.012, d = 0.8$, all the other parameters as per \textbf{Tab.~\ref{tbl1}}.}\label{fdyn}
+    \end{figure}
+    %
+    \begin{figure}[p]
+      \centering
+      \begin{subfigure}{\textwidth}
+        \includegraphics[width=\linewidth]{imgs/a.pdf}
+      \end{subfigure}
 
-      \vspace{0.5cm}
-      \begin{subtable}{.5\textwidth}\centering\scriptsize
-        {\input{tbls/ranalp-ranr0p_5.tex}}
-        \caption{$\alpha, r_p:r_{f1}$}
-      \end{subtable}
-       \caption{Tabular data for different parameter 2D subspaces and growth arrest duration of 5 days}\label{tbl2}
-     }
+      \begin{subfigure}{\textwidth}
+        \includegraphics[width=\linewidth]{imgs/b.pdf}
+      \end{subfigure}
+      \caption{\textbf{Contour plots of ranges of recruitment success after 10 days of simulation for paired values of parameters (axes labels).}
+      Recruitment success is expressed as $\log(\frac{F_1}{P})$; $\alpha$ is the fraction of $P$ cells that will generate $F_{1}$.
+      Different subplots represent different durations of growth arrest ($t_{AE}$ model parameter).
+      }\label{swep}
+    \end{figure}
+    %
+    \begin{table}[p]
+      \centering
+      {%
+        \begin{subtable}{12cm}\centering\scriptsize
+          {\input{tbls/ranalp-ranr0p_0.2.tex}}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.2$}
+        \end{subtable}
+        \\
+       \vspace{0.5cm}
+        \begin{subtable}{12cm}\centering\scriptsize
+          {\input{tbls/ranalp-ranr0p_0.4.tex}}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.4$}
+        \end{subtable}
+        \\
+       \vspace{0.5cm}
+        \begin{subtable}{12cm}\centering\scriptsize
+          {\input{tbls/ranalp-ranr0p_0.6.tex}}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.6$}
+        \end{subtable}
+        \caption{Tabular data of $\log(\frac{F_1}{P})$ for different values of parameters showed at bottom and growth arrest duration of four days. All other parameters  as per \textbf{Tab.~\ref{tbl1}}}\label{tbl2}
+      }
     \end{table}
 %
   \section*{Assumptions} 
     \begin{enumerate}
-      \item I assume that net growth rate is the balance between size-dependent cell proliferation and death
-      \item I assume that P suffers extra mortality during growth arrest due to gametogenesis
-      \item I assume that lenght decreses 1 um after each division
-      \item I assume that P has reached the environmental carrying capacity before starting the simulation
+      \item I assume that net growth rate is the difference between size-dependent cell growth and death
+      \item I assume that $P$ suffers extra mortality during growth arrest due to gametogenesis
+      \item I assume that lenght decreases 0.1 um after each division
+      \item I assume that $P$ has reached the environmental carrying capacity before starting the simulation
     \end{enumerate}
 \end{document}
