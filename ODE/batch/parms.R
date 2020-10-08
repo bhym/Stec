@@ -12,6 +12,6 @@ input <- list(
            minlen                 = 38,
            shrinking_step         = 0.1,
            initlen_p              = 40,
-           initlen_f              = 55,
+           initlen_f              = 80,
            k                      = 1.2
            )
