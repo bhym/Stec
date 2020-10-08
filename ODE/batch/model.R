@@ -29,7 +29,7 @@ mollo <- function(dfac, r0p, r0f, tga, f1is, alp) {
       f_len <- approx_len_f1(t)
 
       p_ar <- allo_rates(p_len, r0_p, d0)
-      f_ar <- allo_rates(p_len, r0_f1, d0)
+      f_ar <- allo_rates(f_len, r0_f1, d0)
 
       blole <- input$growth_block_start + tga
       t1aps <- f1is

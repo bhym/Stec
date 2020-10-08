@@ -32,7 +32,7 @@ function(input, output) {
       f_len <- approx_len_f1(t)
 
       p_ar <- allo_rates(p_len, r0_p, d0)
-      f_ar <- allo_rates(p_len, r0_f1, d0)
+      f_ar <- allo_rates(f_len, r0_f1, d0)
 
       blole <- input$growth_block_start + input$growth_block_length
       t1aps <- input$f1_injection_step
