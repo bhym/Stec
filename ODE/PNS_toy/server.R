@@ -99,7 +99,9 @@ function(input, output) {
                allo_rates = allorates)
 
     colnames(out) <- c("Time", "Parental concentration", "F1 concentration")
-    godaf <- (data.frame(len_p = 38:50, allorates(38:50, 1, 1)))
+    temp <- seq(max(input$initlen_p, input$initlen_f),
+                input$minlen, by = -input$shrinking_step)
+    godaf <- (data.frame(len_p = temp, allorates(temp, 1, 1)))
     return(list(out, rates, godaf))
   })
 
