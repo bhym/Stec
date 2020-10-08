@@ -126,9 +126,7 @@ function(input, output) {
   output$plot3 <- renderPlotly(
     fig2  <- plot_ly(inis()[[3]],
                      x = ~len_p, y = ~gr_alloc, name = "Growth",
-                     type = "scatter", mode = "lines+markers") %>%
-              # add_trace(y = ~de_, name = "Death",
-              #           mode = "lines+markers") %>%
+                     type = "scatter", mode = "lines") %>%
                layout(xaxis = list(title = "Cell length"),
                     yaxis = list(title = "Relative growth rate")
                )
