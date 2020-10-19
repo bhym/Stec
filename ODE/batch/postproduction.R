@@ -33,7 +33,8 @@ pla <- dfa_vs_r0p %>%
           facet_grid(~rantga) +
           xlab("P gametogenesis-induced death") +
           ylab(expression(r[p] : r[f1])) +
-         coord_cartesian(ylim = c(1, 3))
+         coord_cartesian(ylim = c(1, 3)) +
+         scale_fill_viridis_d(end = 1 / 14 * 8) #needed for col match of legends
 
 plb <- alp_vs_r0p %>%
          pl_parsub(ranalp, ranr0p, seq(-2, 2, by = 0.25)) +
