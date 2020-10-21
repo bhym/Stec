@@ -9,7 +9,7 @@ source("model.R")
 source("parms.R")
 
  range_dfac <- seq(0.1, 0.9, 0.1)
- range_r0p  <- seq(1, 3, 0.1)
+ range_r0p  <- seq(0.5, 3, 0.1)
  range_tga  <- seq(1, 6, 1)
  range_f1is <- seq(1, 6, 1)
  range_alp  <- seq(0.01, 0.2, 0.01)
@@ -22,7 +22,7 @@ source("parms.R")
 
 sweep_ <- subspace %>%
   mutate(outs = future_pmap(list(randfac, ranr0p, 1, rantga, ranf1is, ranalp),
-                            function(x, y, z, j, u, b) mollo(x, y, z, j, u,b )
+                            function(x, y, z, j, u, b) mollo(x, y, z, j, u,b)
                             )
         )
 
