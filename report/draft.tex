@@ -14,70 +14,21 @@
   \section*{The hypothetical adaptive value of the generalized growth arrest and the constraints for a successful sex event}
     Molecular, biophysical and chemical data discussed above unequivocally show that \textit{P.~multistriata}, during events of mating and gametogenesis, blocks growth and mitosis for a few days --- three in the experiment discussed here, and up to six in the one discussed by Scalco et al. (2014).
     Also, cell number decreases, very likely for enhanced mortality due to the gametogenesis.
-
     To analyze the impact of such behaviour on population dynamics, we developed a simple process-based model of growth dynamics during the sexual reproduction event, where net growth is the balance between size-dependent cell growth and death.
     The model is conceptually zero-dimensional, and the initial conditions consider the minimal cell concentration recorded by Scalco et al. (2014) as gametogenesis trigger.
-
-    {\color{red}\textbf{Nota 1 Marina
-    {\color{blue}[threshold cell concentration, ovvero 4,000 cells/ml per ciascun parental strain? che roughly corrisponde alla ca 10,000 cell per entrambi i parentali E' un dettaglio, scusa]}:
-    %
-    la concentrazione iniziale {\`e} di 4000 cellule in totale. Il modello non distingue tra mating types ma l'assunzione implicita {\`e} che siano 2000+2000 che {\`e} poco pi{\`u} grande del minimo riportato nel paper di Ele a p. 820 inizio seconda colonna ed in fig 3a}
-    }
-
     Cell numbers and available Nitrogen are expressed as abundance and concentration, respectively.
-    \
+
     The simulation starts with a cell population ($P$) that enters the sexual reproduction phase after reaching a threshold value of a few thousand cells per ml (see Scalco et al., 2014).
-
     During this phase of variable length, the population stop growing and experience a prolonged burst of extra mortality.
-
-    {\color{red}\textbf{Nota 2 Marina
-    {\color{blue}[la mortalit{\`a} pare confinata ai primi due giorni direi, sia nei due exp di Scalco (turbolenza e still condition che in quello di Rossella). Interpreto come mortalit{\`a} valori negativi di growth rate: OK?]}:
-    %
-    Attualmente ci sono due parametri che variano. $t_{F_1 I}$ e $t_{A E}$. $t_{A E}$ {\`e} il giorno in cui finisce l'arresto della crescita e nelle simulazioni varia da 2 a 6 giorni (v.\ tabella 1). L'extra mortalit{\`a} per gametogenesi dura 1 giorno in meno di $t_{A E}$ e quindi dipende da $t_{A E}$ (v.\ relazioni con le parentesi graffe). Il valore di $t_{A E}$ tiene conto degli exp.\ di Rossella e di quelli di Ele le cui figure suggeriscono che un $t_{A E}$ di 6 giorni sia realistico menre vincolare l'extra mortalit{\`a} alla fase di GA ci {\`e} sembrato logico perch{\`e} le due risposte dovrebbero essere collegate. Comunque si tratta di un'esplorazione e serve per vedere che succede cambiando la durata del GA e la durata dell'extra moratlit{\`a} potrebbe essere fissata a 2 giorni se pensiamo sia preferibile. $t_{F_1 I}$ {\`e} invece il giorno in cui nascono le prime figlie ed attualmente {\`e} posto a 3 (v.\ tabella 1)}
-    }
-
     Within the same span, a $P$ fraction will undergo gametogenesis and generate an offspring population ($F_{1}$) that will start to grow the moment ($t_{F_{1}I}$) it appears.
     After $t_{AE}$ days, the growth arrest will end and $P$ will resumes its growth alongside $F_{1}$.
-
-    {\color{red}\textbf{Nota 3 Marina
-    {\color{blue}[quando possiamo dire che che la growth arrest termina? Dopo i primi due giorni in cui {\`e} negativa, la growth rate diventa positiva, ma {\`e} sempre pi{\`u} bassa rispetto alla growth rate dei parentali in mono-coltura. Per questo suggerivo di calcolare la growth rate in ogni singolo giorno]}:
-    % 
-    Come detto sopra la durata del GA varia da 2 a 6 giorni (nella figura 2 ogni panel rappresenta l'effetto di una specifica durata) e questo vincola anche il numero di giorni di extra-mortalit{\`a} per l'extra mortalit{\`a}. I tassi di crescita variano solo in relazione alla taglia (v.\ le equazioni a pag. 1 ricavate a suo tempo da Domenico e la fig.1b) e per le parentali, che sono piccole, le variazioni nei giorni in cui ricominciano a crescere sono trascurabili. I tassi di crescita sono comunque quelli delle cross e non quelli delle parentali isolate.}
-    }
-
     During the entire course of the simulation (set to ten days) cell growth is modulated by competition over Nitrogen and by cell size via an allometric relationship (see D'Alelio et al., 2010).
 
-    {\color{red}\textbf{Nota 4 Marina
-    {\color{blue}[ma l'azoto non {\`e} limitante nei nostri esperimenti. Voi assumete che lo possa essere alla Kolmogorov scale, o boundary layer o qualcosa del genere, ovvero la scala dell'ambiente attorno alla cellula/e? Questo {\`e} un punto che non mi {\`e} chiaro e che dovrebbe essere menzionato/definito. Mi sbaglio?]}:
-    %
-    I tassi di crescita utilizzati sono quelli osservati in laboratorio in condizioni di disponibilit{\`a} in eccesso di azoto, tuttavia sono sostanzialmente coerenti con quelli inferiti dalla crescita in situ derivata dalla riduzione di taglia osservata in situ, per{\`o} su intervalli temporali pi{\`u} lunghi (di fatto interpolando su settimane). Poich{\'e} per duplicarsi le cellule devono assimilare azoto l'assunzione che facciamo {\`e} che in natura la comunit{\`a} sia intorno allo stato stazionario, cio{\`e} non ci sia azoto inorganico disponibile se non quello derivato dal riciclo. Questo corrisponde bene con l'analisi che facemmo col lavoro di Domenico, cio{\`e} che la fase di riproduzione di \textit{Pm} coincideva con diverse concentrazioni di clorofilla totale, quindi diversi livelli di capacit{\`a} portante del sistema ma non a condizioni di significative quantit{\`a} di nutrienti inutilizzati. Il GA mette a disposizione l'azoto che verrebbe utilizzato dalle parentali qualunque sia l'origine. Questo potrebbe essere utilizzato da tutti i componenti della comunit{\`a}. La precisazione che facciamo {\`e} che l'azoto che avrebbero usato le parentali, che se non avessero avviato la fase riproduttiva, avrebbero piu' o mantenuto i livelli di abbondanza precedenti, venga usato totalmente dalle cellule figlie, perch{\`e} ipotizziamo che le cellule figlie restino molto vicine alle parentali e che quindi l'azoto che avrebbero utilizzato loro possa essere utilizzato dalle figlie. L'assunzione aggiuntiva {\`e}, un p{\`o} pi{\`u} forte, e forse discutibile, {\`e} che il tempo di riciclo dell'azoto sia rapidissimo per cui anche il contenuto di azoto delle parentali morte sia subito disponibile per le figlie. Lo scenario {\`e} plausibile se il tempo di dispersione delle cellule, parentali e figlie {\`e} pi{\`u} lento del tempo della diffusione chimica, che {\`e} quella che porta l'azoto mentre la perdita di azoto per diffusione chimica {\`e} neutralizzato dall'assimilazione delle figlie. Tutto questo implica che ci siano porcessi di micropatching di molte cellule che si dividono i ruoli (v.\ sotto)}
-    }
-
-    {\color{red}\textbf{Nota 5 Marina
-    {\color{blue}[quindi avete definito che le cellule parentali hanno taglia diversa? questo era in caso nell'exp di Eleonora perch{\'e} volevamo distinguere i MT in quanto sembrava a quei tempi che uno dei MT si bloccasse pi{\`u} dell'altro. Cambiano molto le cose se i parentali hanno taglie diverse? ovvero 1.\ la pi{\`u} piccola e la pi{\`u} grande nell'ambito della taglia per il sesso o 2 entrambi grandi o 3 (entrambi piccoli). Magari anche questi sono dettagli insignificanti x il modello\dots]}:
-    %
-    Nel modello le taglie dei mating type {\`e} la stessa non si considerano le differenze del setup sperimentale e il tasso di crescita utilizzato e ricavato dall'exp {\`e} probabilmente quello medio tra le due taglie. Mettere taglie diverse cambierebbe nella disponibilit{\`a} di azoto e quindi della abbondanze finali, ma non nella descrizione del processo.}
-    }
-
     A fundamental assumption, discussed later in the text, is that parental and daughters cells share a common, exclusive space, so that only $P$ and $F_{1}$ compete for N made available in such space.
-
-    {\color{red}\textbf{Nota 6 Marina
-    {\color{blue}[da questo io capirei che l'arresto della crescita {\`e} determinato da un fattore esogeno, ovvero il raggiungimento della carrying capacity: quando hanno assimilato tutto l'azoto si fermano]}:
-    %
-    La crescita delle cellule dipende dal massimo tasso di crescita intrinseco dipendente dalla taglia (il $\lambda$ nelle equazione) e dalla disponibilt{\`a} di azoto (il termine $\kappa$ nelle equazioni 1 e 2) quindi quando l'azoto che era potenzialmente disponibile o contenuto nelle parentali finisce si fremano. In realt{\`a} noi ci fermiamo dopo dieci giorni di simulazione. Quello che succede dopo {\`e} quello che succede a tutta la comunit{\`a} cio{\`e} {\`e} un nuovo steady state, con le figlie presenti.}
-    }
-
     This assumption is translated in the model as a decrease in growth rate as the total population ($F_{1} + P$) converges toward the carrying capacity, set as the total nitrogen content of initial parental cells.
-    
+
     To understand better how event timing and response amplitudes impact over $F_{1}$ recruitment success, we compared simulation outputs across selected parameters range.
     Our selected parameters are the $P$ fraction that will generate $F_{1}$ ($\alpha$), gametogenesis-induced extra mortality of parental cells ($d$), duration of the growth arrest ($t_{AE}$), and growth rates ratio among parental and initial cells ($r_{P}:r_{F_{1}}$)
-
-    {\color{red}\textbf{Nota 7 Marina
-    {\color{blue}[il numero delle F1 include sia le F1 che `originano' da un evento di sesso che le F1 che si duplicano. Questa alpha sarebbe l'efficienza della riproduzione sessuata direi, ovvero la frazione di eventi sessuati che sono andati a buon fine? potrebbe forse essere stimato considerando il numero delle auxospore considerando che l'auxospora che vedi il giorno $x$ si sia trasformata in F1 al giorno $x+1$? Nei filmati che facevo vedere l'altro giorno, Eleonora aveva stimato che le auxospore ci mettono ca 10--15 ore a svilupparsi. Questa potrebbe essere una stima del successo della ripr sessuata? Quando i due strain si incontrano vengono prodotti molti gameti/zigoti (v dati di rossella, parecchie centinaia) ma molti muoiono perch{\`e} non si accoppiano. Si formano molte meno auxospore che rappresentano le coniugazioni che vanno a buon fine. Le auxospore permangono a lungo nell'exp di Rossella.]}
-    %
-    Questa {\`e} un'incertezza non risolvibile con le osservazioni perch{\'e} non si riesocno a distingure le $F_1$ dalle loro figlie. Per{\`o}, data la taglia le $F_1$ ci mettono lameno due giorni a riprodursi quindi l'errore dovrebbe essere relativamente piccolo tra i dati che usiamo e le assunzione del modello}
-    }
-
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
 %
   \section*{Model description}
@@ -171,7 +122,7 @@
 
     Assuming that auxospore formation scales with the encounter rate among mates, the number of auxospore formation should positively covary with the number of cell deaths due to unsuccessful encounters.
     This covariation would favour the $F_{1}$ growth, thus favouring better recruitment.
-    Also, more encounters will increase the number of successful matings (parametrised by $\alpha$) and the extra mortality (parametrised by $d$). 
+    Also, more encounters will increase the number of successful matings (parametrised by $\alpha$) and the extra mortality (parametrised by $d$).
     In the following we discuss the main patterns resulting from simulations where the different parameters were varied, in all possible combinations, within the ranges reported in \textbf{Tab.}~\ref{tbl1}
     As the main output variable, we focused on the recruitment success of the offsprings --- quantified as the ratio between $F_{1}$ and $P$ ($r_p : r_{F_{1}}$) --- after ten days from the start of mating.
 
@@ -194,6 +145,7 @@
     Identifying the triggers of this collective process would shed light on the long lasting debate on the relative weight of proximate vs ultimate factors (10.1126/science.1210879) and on the main drivers of the population dynamics of several diatoms.
 
     Relaxing the assumption that all the nitrogen left unused by blocked parental cells or regenerated from their death is used by the daughters with the possibility that part of it would go to other species in the community would just decrease the recruitment success but would produce an advantage for the other species in the community.
+
     In SM, we report the impact on the structure of the community and species succession of a sexual reproduction event in a simulation with a biogeochemical model reproducing the conditions of a North Atlantic site.
     Diatom sex events may be one of the factors that affect phytoplankton succession and changes in community structure in nature.
     %
@@ -242,7 +194,8 @@
           {\input{tbls/ranalp-ranr0p_0.6.tex}}
           \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.6$}
         \end{subtable}
-        \caption{Tabular data of $\log_{10}(F_{1}/P)$ for different values of parameters showed at bottom and growth arrest duration of four days. All other parameters were assigned as per \textbf{Tab.~\ref{tbl1}}}\label{tbl2}
+        \caption{Tabular data of $\log_{10}(F_{1}/P)$ for different values of parameters showed at bottom and growth arrest duration of four days.
+                 All other parameters were assigned as per \textbf{Tab.~\ref{tbl1}}}\label{tbl2}
       }
     \end{table}
 %
