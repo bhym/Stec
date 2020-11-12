@@ -3,8 +3,9 @@ library("tidyverse")
 library("patchwork")
 source("functions.R")
 popu <- make_inds(id = 1:100, string1 = 1, string2 = 1,
- thickness = 5, cell_length = sample(c(5, 4), 100, replace = T))
-
+    #o thickness = 5, cell_length = sample(c(5, 4),
+    #o thickness = sample(5:10, 100, replace = T), cell_length = sample(c(5, 4),
+ 100, replace = T)
 j <- 90
 dyn <- list()
 mutrat <- 1e-7
