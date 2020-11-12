@@ -58,3 +58,46 @@ encounter3 <- function(inds, giug) {
     check
     return(inds)
 }
+
+encounter_and_sex <- function(inds) {
+  lele <- nrow(inds)
+  indices <- vector("integer", lele)
+  indices <- seq_len(lele - lele %% 2) #This is to avoid R complains if lele is odd
+  encounter_split_len <- lele %/% 2 #This is to avoid R complains if lele is odd
+  scrambled_idxs <- sample(indices)
+  ran_first_group_idxs <- vector("integer", encounter_split_len)
+  ran_first_group_idxs <- head(scrambled_idxs, encounter_split_len)
+  ran_secon_group_idxs <- vector("integer", encounter_split_len)
+  ran_secon_group_idxs <- tail(scrambled_idxs, encounter_split_len)
+  a <- array(NA, dim = c(encounter_split_len, 3))
+  #GARBAGE PRODUCED HERE BECAUSE OF SUBSETTING
+  a[, 1] <- inds[ran_first_group_idxs, ]$cell_length
+  a[, 2] <- inds[ran_secon_group_idxs, ]$cell_length
+  check <- (a[, 1] > 4 | a[, 2] > 4)
+  first_wz_a <- data.table(a = ran_first_group_idxs,
+                         b = ran_secon_group_idxs,
+                         ci = check)
+  first_wz <- first_wz_a[ci == TRUE]
+  first <- first_wz
+  a_ <- first$a
+  b_ <- first$b
+  samp1 <- sample(2:3, 2 * length(a_), repl = T)
+  samp2 <- sample(2:3, 2 * length(b_), repl = T)
+  ch1 <- inds[a_, .(samp1)]
+  ch2 <- inds[b_, .(samp2)]
+  
+  new_inds <- make_inds(id = seq(max(inds$id), length = 2 * sum(check)),
+                        string1 = unlist(ch1), string2 = unlist(ch2),
+                        thickness = 5,
+                        cell_length = 5)
+                        kill_because_gametes <- c(a_, b_)
+                        inds <- inds[-kill_because_gametes]
+                        inds <- data.table::rbindlist(list(inds, new_inds), use.names = T, fill = F)
+                        return(inds)
+}
+remove_tiny <- function(inds, death_thresh) {
+  kill <- which(inds$cell_length < death_thresh)
+ inds <- inds[-kill]
+return(inds)
+}
+# check death is not working well
