@@ -45,6 +45,7 @@ plb <- alp_vs_r0p %>%
 
 fint <- unique(lsw_a$ranr0p) [seq(6, 26, len = 9)]
 sint <- unique(lsw_a$ranalp) [seq(1, 20, len = 9)]
+
 lsw_a %>%
 filter(ranf1is == 3, ranalp %in% sint, ranr0p %in% fint) %>%
     select(ranalp, ranr0p, randfac, logo) %>%
