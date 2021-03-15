@@ -15,6 +15,9 @@ pl_parsub <- function(dat, x_, y_, breaks_) {
 library("tidyverse")
 library("kableExtra")
 
+f_ref_alpha <- 0.012     #filter
+l_ref_alpha <- 0.0122785 #line
+
 lsw <- readRDS("lsw_out.rds")
 
 lsw_a <-  lsw %>%
@@ -30,18 +33,25 @@ alp_vs_r0p <- filter(select(lsw_a, -ranf1is), randfac == 0.8)
 
 pla <- dfa_vs_r0p %>%
           pl_parsub(randfac, ranr0p, seq(-2, 2, by = 0.25)) +
+          geom_hline(yintercept = 2.609, col = "red", alpha = 0.5) +
           facet_grid(~rantga) +
           xlab("P gametogenesis-induced death") +
           ylab(expression(r[p] : r[f1])) +
-         coord_cartesian(ylim = c(0.5, 3)) +
-         scale_fill_viridis_d(end = 1 / 14 * 9) #needed for col match of legends
+          coord_cartesian(ylim = c(0.5, 3)) +
+          scale_fill_viridis_d(end = 1 / 14 * 9,
+                               name = expression(log[10](F[1] / P)))
+                              #needed for col match of legends
 
 plb <- alp_vs_r0p %>%
          pl_parsub(ranalp, ranr0p, seq(-2, 2, by = 0.25)) +
-          facet_grid(~rantga) +
+         facet_grid(~rantga) +
          xlab("\u03B1") +
          ylab(expression(r[p] : r[f1])) +
-         coord_cartesian(ylim = c(0.5, 3))
+         geom_point(aes(x = l_ref_alpha, y = 2.609), pch = 21,
+                    alpha = 0.5, fill = "red") +
+         scale_fill_viridis_d(name = expression(log[10](F[1] / P))) +
+         coord_cartesian(ylim = c(0.5, 3)) +
+         scale_x_log10()
 
 fint <- unique(lsw_a$ranr0p) [seq(6, 26, len = 9)]
 sint <- unique(lsw_a$ranalp) [seq(1, 20, len = 9)]
