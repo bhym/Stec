@@ -35,7 +35,7 @@ pla <- dfa_vs_r0p %>%
           pl_parsub(randfac, ranr0p, seq(-2, 2, by = 0.25)) +
           geom_hline(yintercept = 2.609, col = "red", alpha = 0.5) +
           facet_grid(~rantga) +
-          xlab("P gametogenesis-induced death") +
+          xlab("m") +
           ylab(expression(r[p] : r[f1])) +
           coord_cartesian(ylim = c(0.5, 3)) +
           scale_fill_viridis_d(end = 1 / 14 * 9,
