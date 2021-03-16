@@ -73,7 +73,6 @@ filter(ranf1is == 3, ranalp %in% sint, ranr0p %in% fint) %>%
                            a, "-", b, "_",
                            randfac, ".tex", sep = "")))
 
-ggsave("../../report/imgs/a.pdf", pla, device = cairo_pdf,
-       width = 12, height = 4)
-ggsave("../../report/imgs/b.pdf", plb, device = cairo_pdf,
-       width = 12, height = 4)
+pan <- patchwork::wrap_plots(pla,plb, nrow = 2)
+ggsave("../../report/imgs/parswpan.pdf", pan,
+       device = cairo_pdf, width = 12, height = 8)
