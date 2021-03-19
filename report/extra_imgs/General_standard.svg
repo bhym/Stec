@@ -8,9 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="296.5527mm"
-   height="185.78458mm"
-   viewBox="0 0 296.55271 185.78457"
+   width="275.75565mm"
+   height="176.11934mm"
+   viewBox="0 0 275.75565 176.11933"
    version="1.1"
    id="svg6075"
    sodipodi:docname="General_standard.svg"
@@ -34,12 +34,12 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="0.92604167"
-     inkscape:cx="531.58645"
-     inkscape:cy="400.13074"
+     inkscape:cx="493.58721"
+     inkscape:cy="380.68522"
      inkscape:window-x="0"
      inkscape:window-y="22"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer3"
      inkscape:document-rotation="0"
      inkscape:snap-global="false" />
   <defs
@@ -256,7 +256,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="hidden"
-     style="display:none">
+     style="display:none"
+     transform="translate(-10.053966,-5.1449594)">
     <path
        style="fill:#999999;stroke:#999999;stroke-width:2.6865;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.6;stroke-opacity:1"
        id="path2176-2-9-6"
@@ -291,7 +292,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="figure"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(-10.053966,-5.1449594)">
     <g
        id="layer1"
        transform="translate(21.17937,18.372129)">
@@ -2279,5 +2281,16 @@
         </g>
       </g>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18.2739px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:1.14212"
+       x="10.046706"
+       y="18.643608"
+       id="text1277"><tspan
+         sodipodi:role="line"
+         id="tspan1275"
+         x="10.046706"
+         y="18.643608"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Nimbus Sans';-inkscape-font-specification:'Nimbus Sans';stroke-width:1.14212">A</tspan></text>
   </g>
 </svg>

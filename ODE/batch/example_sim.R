@@ -73,12 +73,15 @@ p_sam <- sam %>%
                         values_to = "Concentration",
                         names_to = "Lineage") %>%
            mutate(Lineage = gsub(" concentration", "", Lineage)) %>%
+           mutate(Lineage = gsub("Parental", "P", Lineage)) %>%
            ggplot() +
             aes(x = Time, y = Concentration, col = Lineage) +
             geom_path() +
             geom_point() +
             scale_y_log10() +
-            scale_x_continuous(breaks = scales::pretty_breaks())
+            scale_x_continuous(breaks = scales::pretty_breaks()) +
+            xlab("Time (days)") +
+            ylab("Cells/ml")
 
 p_dif <- dif %>%
            as.data.frame %>%
@@ -86,24 +89,28 @@ p_dif <- dif %>%
                         values_to = "Concentration",
                         names_to = "Lineage") %>%
            mutate(Lineage = gsub(" concentration", "", Lineage)) %>%
+           mutate(Lineage = gsub("Parental", "P", Lineage)) %>%
            ggplot() +
             aes(x = Time, y = Concentration, col = Lineage) +
             geom_path() +
             geom_point() +
             scale_y_log10() +
-            scale_x_continuous(breaks = scales::pretty_breaks())
+            scale_x_continuous(breaks = scales::pretty_breaks()) +
+            xlab("Time (days)") +
+            ylab("Cells/ml")
 
 p_rat <- rates %>%
            pivot_longer(-Time,
                         values_to = "Cell length",
                         names_to = "Lineage") %>%
-           mutate(Lineage = ifelse(Lineage == "len_f", "F1", "Parental")) %>%
+           mutate(Lineage = ifelse(Lineage == "len_f", "F1", "P")) %>%
            ggplot() +
             aes(x = Time, y = `Cell length`, col = Lineage) +
             geom_path() +
             geom_point() +
-            scale_x_continuous(breaks = scales::pretty_breaks())
-
+            scale_x_continuous(breaks = scales::pretty_breaks()) +
+            xlab("Time (days)") +
+            ylab("Cells/ml")
 
 p_gal <- godaf %>%
            select("Cell length" = len_p, "Relative growth rate" = gr_alloc) %>%
@@ -114,6 +121,10 @@ p_gal <- godaf %>%
 
 pli <- wrap_plots(p_rat, p_gal, p_sam, p_dif) &
   theme_minimal() &
-  plot_annotation(tag_levels = "a", tag_prefix = "(", tag_suffix = ")")
+  plot_annotation(tag_levels = "A")
 
-pli + plot_layout(guides = "collect") & theme(legend.position = 'bottom')
+plipan <- pli +
+  plot_layout(guides = "collect") &
+  theme(legend.position = "bottom", legend.title = element_blank())
+
+ggsave("../../report/imgs/Figpan.pdf", plipan, dev = cairo_pdf, width=14, height = 7)
