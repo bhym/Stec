@@ -26,7 +26,7 @@ lsw_a <-  lsw %>%
                                  Parental.concentration)
          ) %>%
    mutate(logo = log10(F1.concentration / P.corr)) %>%
-   filter(rantga == ranf1is + 1)
+   filter((rantga %in% c(0, 1)) | (ranf1is  == 3))
 
 dfa_vs_r0p <- filter(select(lsw_a, -ranf1is), ranalp == 0.01)
 alp_vs_r0p <- filter(select(lsw_a, -ranf1is), randfac == 0.8)
@@ -60,15 +60,15 @@ ggsave("../../report/imgs/parswpan.pdf", pan,
 fint <- unique(lsw_a$ranr0p) [seq(6, 26, len = 9)]
 sint <- unique(lsw_a$ranalp) [seq(1, 20, len = 9)]
 
-lsw_a %>%
-filter(ranf1is == 3, ranalp %in% sint, ranr0p %in% fint) %>%
+bds <- lsw_a %>%
+filter(rantga == 3, ranalp %in% sint, ranr0p %in% fint) %>%
     select(ranalp, ranr0p, randfac, logo) %>%
     group_by(randfac) %>%
     nest %>%
     mutate(matrici = map(data, ~pivot_wider(.x, names_from = ranalp,
                                             values_from = logo) %>%
-    arrange(desc(ranr0p)) %>%
-    column_to_rownames("ranr0p"))) %>%
+                                arrange(desc(ranr0p)) %>%
+                                column_to_rownames("ranr0p"))) %>%
     ungroup() %>%
     select(-data) %>%
     pwalk(function(randfac, matrici, a = "ranalp", b = "ranr0p")
@@ -76,4 +76,3 @@ filter(ranf1is == 3, ranalp %in% sint, ranr0p %in% fint) %>%
           save_kable(paste("../../report/tbls/",
                            a, "-", b, "_",
                            randfac, ".tex", sep = "")))
-
