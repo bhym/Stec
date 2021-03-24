@@ -10,7 +10,7 @@ source("parms.R")
 
  range_dfac <- seq(0.1, 0.9, 0.1)
  range_r0p  <- seq(0.5, 3, 0.1)
- range_tga  <- seq(1, 6, 1)
+ range_tga  <- seq(0, 6, 1)
  range_f1is <- seq(1, 6, 1)
  range_alp  <- seq(0.01, 0.2, 0.01)
 
