@@ -53,6 +53,10 @@ plb <- alp_vs_r0p %>%
          coord_cartesian(ylim = c(0.5, 3)) +
          scale_x_log10()
 
+pan <- patchwork::wrap_plots(pla, plb, nrow = 2)
+ggsave("../../report/imgs/parswpan.pdf", pan,
+       device = cairo_pdf, width = 12, height = 8)
+
 fint <- unique(lsw_a$ranr0p) [seq(6, 26, len = 9)]
 sint <- unique(lsw_a$ranalp) [seq(1, 20, len = 9)]
 
@@ -73,6 +77,3 @@ filter(ranf1is == 3, ranalp %in% sint, ranr0p %in% fint) %>%
                            a, "-", b, "_",
                            randfac, ".tex", sep = "")))
 
-pan <- patchwork::wrap_plots(pla,plb, nrow = 2)
-ggsave("../../report/imgs/parswpan.pdf", pan,
-       device = cairo_pdf, width = 12, height = 8)
