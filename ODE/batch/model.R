@@ -50,7 +50,7 @@ mollo <- function(dfac, r0p, r0f, tga, f1is, alp) {
     tl    <- length(times)
 
     bs    <- input$growth_block_start
-    len   <- input$growth_block_length
+    len   <- tga
     be    <- input$growth_block_start + len
     tf1b  <- f1is
 
