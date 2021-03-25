@@ -30,7 +30,8 @@ source("parms.R")
 
 #            dfac r0p   r0f   tga f1is alp
 dif <- mollo(0.8, 1.06, 0.58, 3,  3,   0.012)
-sam <- mollo(0.8, 1,    1,    3,  3,   0.012)
+#o sam <- mollo(0.8, 1,    1,    3,  3,   0.012)
+sam <- mollo(0.8, 1.06, 0.58, 0,  3,   0.012)
 
 lenv_p  <- seq(input$initlen_p, input$minlen, by = -input$shrinking_step)
 lenv_f  <- seq(input$initlen_f, input$minlen, by = -input$shrinking_step)
@@ -127,4 +128,5 @@ plipan <- pli +
   plot_layout(guides = "collect") &
   theme(legend.position = "bottom", legend.title = element_blank())
 
-ggsave("../../report/imgs/Figpan.pdf", plipan, dev = cairo_pdf, width=14, height = 7)
+ggsave("../../report/imgs/Figpan.pdf", plipan, dev = cairo_pdf,
+       width = 14, height = 7)
