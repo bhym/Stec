@@ -13,7 +13,7 @@
     \bibliographystyle{unsrtnat}
 
 \begin{document}
-  \section*{Model explanation ({\color{red}Methods, maybe SupMat?})}
+  \section*{Model explanation}
     The model is conceptually zero-dimensional, and the initial conditions consider the minimal cell concentration recorded by~\cite{scalco2014dynamics} as gametogenesis trigger.
     Cell numbers and available nitrogen are expressed as abundance and concentration, respectively.
 
@@ -31,7 +31,7 @@
     Our selected parameters are the $P$ fraction that will generate $F_{1}$ ($\alpha$), gametogenesis-induced extra mortality of parental cells ($d$), duration of the growth arrest ($t_{AE}$), and growth rates ratio among parental and initial cells ($r_{P}:r_{F_{1}}$)
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
 %
-  \section*{Model description ({\color{red} SupMat?})}
+  \section*{Model description}
     Parental ($P$) and offspring ($F_{1}$) dynamics are defined as ODE:\@
     %
     \begin{align}
@@ -81,49 +81,6 @@
     \]
     The parameters values and ranges are reported in \textbf{Table~\ref{tbl1}}.
 %
-  \section*{Results}
-    To analyze the impact of growth arrest on population dynamics, we developed a simple process-based toy model of growth dynamics during the sexual reproduction event, where net growth is the balance between size-dependent cell growth and death.
-    Considering the time interval chosen for the simulation (ten days), the size reduction of $P$ and $F_{1}$ (\textbf{Fig.}~\ref{fdyn}, plot {\color{blue}\textit{b}}) is negligible and, with it, the change in the growth rate of $P$ and $F_{1}$, with a significantly slower growth rate for $F_{1}$ due to their larger size.
-    \textbf{Plots {\color{blue}\textit{c}}} and {\textbf{\color{blue}{\textit{d}}}} show the variation in abundance of $P$ and $F_{1}$ for two different sets of parameters used for the simulation.
-    These plots provide a demonstration of the dynamics that the model simulates.
-    A slower growth rate of $P$ ($r_p=1.82$, \textbf{plot {\color{blue}\textit{c}}} vs $r_p=1$, \textbf{plot {\color{blue}\textit{d}}}) that leaves more nitrogen available favors the growth of $F_{1}$, thus producing a greater abundance of $F_{1}$ and a lower abundance of $P$.
-
-    Top row in \textbf{Fig.}~\ref{swep} show the ratio between the abundance of $F_{1}$ and that of $P$ after ten days of simulation for the growth rates ratio of $F_{1}$ and $P$ ($r_P : r_{F_{1}}$ on the $Y$ axis) vs $d$, the extra mortality ($X$ axis).
-    The colours correspond to different ranges in the values of the decimal logarithm for the abundance ratio, e.g., $\log_{10}(F_{1}/P)$ and each plot displays the result for different durations of the growth arrest ($t_{AE}$).
-    While $F_{1}$ will always be lower than $P$ (values of $\log_{10}(F_{1}/P)$ always lower than $0$), if the arrest persist more than four days a positive feedback appears between abundance ratio and both net growth rates ($r_P : r_{F_{1}}$) and extra mortality $d$.
-    In the more favourable scenarios, the ratio in abundance among $F_{1}$ and $P$ would be larger than $0.17$ (6 days of GA, dark green areas on the lower left).
-    The lower row of the same figure shows the log-ratio among $F_{1}$ and $P$ abundances for various growth rate ratio ($r_P : r_{F_{1}}$ on the $Y$ axis) vs the fraction of parental cells that generated daughter cells $F_{1}$ ($\alpha$), through auxospore formation.
-    Success in recruitment appears to increase $F_{1}$ success, while growth rate ratio seems to affect it only for a longer duration of growth arrest.
-
-    We report the values of $\log_{10}(F_{1}/P)$ for different combinations of the parameters as supplementary tables (\textbf{Table~\ref{tbl2}}).
-  \section*{Discussion}
-    Molecular, biophysical and chemical data discussed above unequivocally show that \textit{P.~multistriata}, during events of mating and gametogenesis, blocks growth and mitosis for a few days --- three in the experiment discussed here, and up to six in the one discussed by~\cite{scalco2014dynamics}.
-    Also, cell number decreases, very likely for enhanced mortality due to the gametogenesis.
-
-    Detailed elaboration of the nature of the molecular and physical processes associated with the growth arrest, but an elementary toy model like the one we developed could help to shine light on the most fundamental effects of growth arrest over the balance between $P$ and $F_{1}$ generations. Furthermore, while many refined models exist for studying cells' distribution patterns in nature~\citep{d2010time} and how the cell size reduction-restitution cycle (SRRC) affect diatom biology and ecology~\citep{hense2015theoretical}, our simulations are the first to explore how the SRRC qualitatively impact over $F_{1}$ survival.
-
-    The ten days length for growth arrest was chosen arbitrarily as a realistic time interval during which parental and daughter cells could remain close one to the other in a low sheared flow regime, so that the hypothesis of resources sharing could hold.
-    The time spent in close vicinity by cells in a viscous regime --- as the one we found in situ --- has been seldom analyzed in detail (see~\cite{jenkinson1992selection})
-    However, we assume that to permit mating, which implies direct contact among mates, several cells should converge by some mechanism --- for example, the one hypothesized by~\cite{botte2013hydrodynamic} and recently supported with observations by~\cite{Font-Muinoz15997}.
-    Because of this assumtpion, our scenario would simulate local aggregations of cells, whose reproduction is favored by the reaching of what we define threshold density.
-    This concentration should be enough to trigger gametogenesis by chemical signal exchange ({\color{green}\textbf{ref}}).
-    Once the gametogenesis starts all the involved cells stop growing and some individuals will form gametes, likely because the triggering caught them in a specific phase of the cell cycle.
-    Only a part of these gametes will encounter the opposite mating type, and only some of these will successfully complete the other phases, producing an $F_{1}$ generation (e.g.,~\cite{scalco2014dynamics}).
-    Eventually, those unable to mate or complete gametogenesis will die.
-    These considerations are compatible with the observed negative growth rate of $P$, and are formulated in the model as extra mortality ($d$).
-
-    If auxospore formation scales with the encounter rate among mates, the number of auxospore formation should positively covary with the number of cell deaths due to unsuccessful encounters.
-    This covariation would favor the $F_{1}$ growth, thus favouring better recruitment.
-    Also, more encounters will increase the number of successful matings (parametrised by $\alpha$) and the extra mortality (parametrised by $d$).
-    Overall the simulation provides a quantitative assessment of the number of $F_{1}$ that accumulate after ten day from the start of gametogenesis in relation to the number of mating cells and show that:
-    1.\ only in extreme scenarios $F_{1}$ abundance will be equal or higher than $P$ and
-    2.\ that the biological constrains of gametogenesis (growth arrest and extra death) due to resetting of cell physiology are compensated by an advantage for the $F_{1}$, mimicking a sort of maternal care.
-
-    The constraints imposed by the series of events leading to \textit{P. multistriata} recruitment also suggest that blooming is advantageous because increase the number of initial cells, thus allowing for a better seeding of the community with the new generation.
-  
-    Furthermore, the concentration increase during bloom has a strong positive feedback on mating --- itself scaling with parental cell abundance, related to $\alpha$ in the model --- because it boosts encounter rate.~\cite{d2010time} inferred form data and modeling that the life cycle of \textit{P. multistriata} consists of two phases characterized by opposite growth rate trends (slow vs fast).
-     The shift in rates is collective and appears during bloom events, during which cells prepare for sexual reproduction.
-     Identifying the triggers of this collective process would shed light on the long-lasting debate on the relative weight of proximate vs ultimate factors~\cite{Laland1512} and on the main drivers of the population dynamics of several diatoms.
   %
   \bibliography{paper_integration}
   %
@@ -136,16 +93,6 @@
         In {\color{blue}\textit{(c)}} and {\color{blue}\textit{(d)}}: $\alpha=0.012, d = 0.8$, all the other parameters as per \textbf{Tab.~\ref{tbl1}}.
       }\label{fdyn}.
     \end{figure}
-    %
-    \begin{figure}[p]
-        \includegraphics[width=\linewidth]{imgs/parswpan.pdf}
-      \caption{\textbf{Contour plots of ranges of recruitment success after 10 days of simulation for paired values of parameters (axes labels).}
-        Recruitment success is expressed as $\log_{10}(F_{1}/P)$; $\alpha$ is the fraction of $P$ cells that will generate $F_{1}$.
-        Different subplots represent different durations of growth arrest ($t_{AE}$ model parameter).
-        Parameters left unchanged during the simulations were assigned as per \textbf{Tab.~\ref{tbl1}}.
-      }\label{swep}
-    \end{figure}
-    %
     %
     \begin{table}[p]
       \centering
