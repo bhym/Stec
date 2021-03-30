@@ -111,13 +111,14 @@ p_rat <- rates %>%
             geom_point() +
             scale_x_continuous(breaks = scales::pretty_breaks()) +
             xlab("Time (days)") +
-            ylab("Cells/ml")
+            ylab("Cells length (\U3BCm)")
 
 p_gal <- godaf %>%
            select("Cell length" = len_p, "Relative growth rate" = gr_alloc) %>%
            ggplot() +
             aes(x = `Cell length`, y = `Relative growth rate`) +
             geom_path(col = "dodgerblue") +
+            xlab("Cells length (\U3BCm)") +
             scale_x_continuous(breaks = scales::pretty_breaks())
 
 pli <- wrap_plots(p_rat, p_gal, p_sam, p_dif) &
