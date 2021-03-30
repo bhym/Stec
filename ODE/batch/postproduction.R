@@ -36,7 +36,7 @@ pla <- dfa_vs_r0p %>%
           geom_hline(yintercept = 2.609, col = "red", alpha = 0.5) +
           facet_grid(~rantga) +
           xlab("m") +
-          ylab(expression(r[p] : r[f1])) +
+          ylab(expression(r[P] : r[F1])) +
           coord_cartesian(ylim = c(0.5, 3)) +
           scale_fill_viridis_d(end = 1 / 14 * 9,
                                name = expression(log[10](F[1] / P)))
@@ -46,7 +46,7 @@ plb <- alp_vs_r0p %>%
          pl_parsub(ranalp, ranr0p, seq(-2, 2, by = 0.25)) +
          facet_grid(~rantga) +
          xlab("\u03B1") +
-         ylab(expression(r[p] : r[f1])) +
+         ylab(expression(r[P] : r[F1])) +
          geom_point(aes(x = l_ref_alpha, y = 2.609), pch = 21,
                     alpha = 0.5, fill = "red") +
          scale_fill_viridis_d(name = expression(log[10](F[1] / P))) +
