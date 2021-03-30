@@ -5,7 +5,7 @@ input <- list(
            dfac                   = 0.8,
            end_time               = 10,
            growth_block_start     = 1,
-           growth_block_length    = 3,
+           growth_block_length    = 2,
            f1_injection_step      = 3,
            growth_rate_p          = 1,
            growth_rate_f1         = 1,
