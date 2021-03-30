@@ -29,8 +29,7 @@ source("model.R")
 source("parms.R")
 
 #            dfac r0p   r0f   tga f1is alp
-dif <- mollo(0.8, 1.06, 0.58, 3,  3,   0.012)
-#o sam <- mollo(0.8, 1,    1,    3,  3,   0.012)
+dif <- mollo(0.8, 1.06, 0.58, 2,  3,   0.012)
 sam <- mollo(0.8, 1.06, 0.58, 0,  3,   0.012)
 
 lenv_p  <- seq(input$initlen_p, input$minlen, by = -input$shrinking_step)
