@@ -28,7 +28,7 @@
     This assumption is translated in the model as a decrease in growth rate as the total population ($F_{1} + P$) converges toward the carrying capacity, set as the total nitrogen content of initial parental cells.
 
     To understand better how event timing and response amplitudes impact over $F_{1}$ recruitment success, we compared simulation outputs across selected parameters range.
-    Our selected parameters are the $P$ fraction that will generate $F_{1}$ ($\alpha$), gametogenesis-induced extra mortality of parental cells ($d$), duration of the growth arrest ($t_{AE}$), and growth rates ratio among parental and initial cells ($r_{P}:r_{F_{1}}$)
+    Our selected parameters are the $P$ fraction that will generate $F_{1}$ ($\alpha$), gametogenesis-induced extra mortality of parental cells ($m$), duration of the growth arrest ($t_{AE}$), and growth rates ratio among parental and initial cells ($r_{P}:r_{F_{1}}$)
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
 %
   \section*{Model description}
@@ -75,7 +75,7 @@
     Finally, $\delta$ is an extra mortality term defined as
     \[
       \begin{cases}
-        d & \mbox{if } t < t_{AE} \\
+        m & \mbox{if } t < t_{AE} \\
         0 & \mbox{if } t > t_{AE}
       \end{cases}
     \]
@@ -87,10 +87,9 @@
     \begin{figure}[p]
       \includegraphics[width=\linewidth]{imgs/Figpan.pdf}
       \caption{\textbf{Simulated size dependent growth and impact on the population dynamics} ---
-        {\color{blue}\textit{(a)}} dependence of specific growth rate on cell length;
-        {\color{blue}\textit{(b)}} Size reduction for the two sub-populations;
-        examples of simulation outputs whith $r_{p} >r_{f1}$ (1.06 and 0.58, respectively) {\color{blue}\textit{(c)}} and $r_{p} = r_{f1}$ {\color{blue}\textit{(d)}}.
-        In {\color{blue}\textit{(c)}} and {\color{blue}\textit{(d)}}: $\alpha=0.012, d = 0.8$, all the other parameters as per \textbf{Tab.~\ref{tbl1}}.
+        {\color{blue}\textit{(A)}} dependence of specific growth rate on cell length during the time interval considered in the model (10 days);
+        {\color{blue}\textit{(B)}} Size reduction for the two sub-populations.
+        {\color{blue}\textit{(C)}} and {\color{blue}\textit{(D)}}, examples of simulation outputs with the growth rates of the current work (r$_{P}$ = 1.06, r$_{F1}$ = 0.58) and {\color{blue}\textit{(C)}} no growth arrest (t$_{AE}$ = 0) or {\color{blue}\textit{(D)}} duration of growth arrest as in the current work (t$_{AE}$ = 3). In C and D:\@$\alpha$ = 0.012, m = 0.8, all the other parameters as per \textbf{Tab.~\ref{tbl1}}.
       }\label{fdyn}.
     \end{figure}
     %
@@ -105,11 +104,11 @@
           $\alpha$        & fraction of $P$ that will generate $F_{1}$ & ---               & [0.01, 0.2] & Explored via simulations\\
           $r_{P}$         & net growth rate of $P$                     & $\text{day}^{-1}$ & [0.5, 3]    & Explored via simulations\\ 
           $r_{F_{1}}$     & net growth rate of $F_{1}$                 & $\text{day}^{-1}$ & 1           & ---\\
-          $t_{AE}$        & end day of the growth arrest               & day               & [2,6]       & Explored via simulations\\
+          $t_{AE}$        & end day of the growth arrest               & day               & [0,6]       & Explored via simulations\\
           $t_{F_{1}I}$    & day of appearence of the offspring         & day               & 3           & Experiment detailed in the paper\\
           $L_{0,P}$       & starting length for $P$ cells              & $\mu$m            & 40          & Experiment detailed in the paper\\
           $L_{0,{F_{1}}}$ & starting length for $F_{1}$ cells          & $\mu$m            & 80          & Experiment detailed in the paper\\
-          $d$             & gametogenesis-induced extra mortality      & day               & [0.1, 0.9]  & Explored via simulations\\
+          $m$             & gametogenesis-induced extra mortality      & day               & [0.1, 0.9]  & Explored via simulations\\
           \bottomrule
         \end{tabular}
        }
@@ -121,19 +120,19 @@
       {%
         \begin{subtable}{12cm}\centering\scriptsize
           {\input{tbls/ranalp-ranr0p_0.2.tex}}
-          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.2$}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } m = 0.2$}
         \end{subtable}
         \\
        \vspace{0.5cm}
         \begin{subtable}{12cm}\centering\scriptsize
           {\input{tbls/ranalp-ranr0p_0.4.tex}}
-          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.4$}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } m = 0.4$}
         \end{subtable}
         \\
        \vspace{0.5cm}
         \begin{subtable}{12cm}\centering\scriptsize
           {\input{tbls/ranalp-ranr0p_0.6.tex}}
-          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.6$}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } m = 0.6$}
         \end{subtable}
         \caption{Tabular data of $\log_{10}(F_{1}/P)$ for different values of parameters showed at bottom and growth arrest duration of three days.
                  All other parameters were assigned as per \textbf{Tab.~\ref{tbl1}}}\label{tbl2}

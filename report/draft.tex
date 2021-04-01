@@ -22,13 +22,13 @@
     During this phase of variable length, the population stop growing and experience a prolonged burst of extra mortality.
     Within the same span, a $P$ fraction will undergo gametogenesis and generate an offspring population ($F_{1}$) that will start to grow the moment ($t_{F_{1}I}$) it appears.
     After $t_{AE}$ days, the growth arrest will end and $P$ will resumes its growth alongside $F_{1}$.
-    During the entire course of the simulation (set to ten days) cell growth is modulated by competition over Nitrogen and by cell size via an allometric relationship (see D'Alelio et al., 2010).
+    During the entire course of the simulation (set to ten days) cell growth is modulated by competition over Nitrogen and by cell size via an allometric relationship (see m'Alelio et al., 2010).
 
     A fundamental assumption, discussed later in the text, is that parental and daughters cells share a common, exclusive space, so that only $P$ and $F_{1}$ compete for N made available in such space.
     This assumption is translated in the model as a decrease in growth rate as the total population ($F_{1} + P$) converges toward the carrying capacity, set as the total nitrogen content of initial parental cells.
 
     To understand better how event timing and response amplitudes impact over $F_{1}$ recruitment success, we compared simulation outputs across selected parameters range.
-    Our selected parameters are the $P$ fraction that will generate $F_{1}$ ($\alpha$), gametogenesis-induced extra mortality of parental cells ($d$), duration of the growth arrest ($t_{AE}$), and growth rates ratio among parental and initial cells ($r_{P}:r_{F_{1}}$)
+    Our selected parameters are the $P$ fraction that will generate $F_{1}$ ($\alpha$), gametogenesis-induced extra mortality of parental cells ($m$), duration of the growth arrest ($t_{AE}$), and growth rates ratio among parental and initial cells ($r_{P}:r_{F_{1}}$)
     We deployed an interactive version of the model at the URL \url{https://arfalas.shinyapps.io/pns_toy/}, code and figures are available on \url{https://github.com/bhym/Stec} ({\color{red} currently private})
 %
   \section*{Model description}
@@ -75,7 +75,7 @@
     Finally, $\delta$ is an extra mortality term defined as
     \[
       \begin{cases}
-        d & \mbox{if } t < t_{AE} \\
+        m & \mbox{if } t < t_{AE} \\
         0 & \mbox{if } t > t_{AE}
       \end{cases}
     \]
@@ -96,7 +96,7 @@
           $t_{F_{1}I}$    & day of appearence of the offspring         & day               & 3           & Experiment detailed in the paper\\
           $L_{0,P}$       & starting length for $P$ cells              & $\mu$m            & 40          & Experiment detailed in the paper\\
           $L_{0,{F_{1}}}$ & starting length for $F_{1}$ cells          & $\mu$m            & 80          & Experiment detailed in the paper\\
-          $d$             & gametogenesis-induced extra mortality      & day               & [0.1, 0.9]  & Explored via simulations\\
+          $m$             & gametogenesis-induced extra mortality      & day               & [0.1, 0.9]  & Explored via simulations\\
           \bottomrule
         \end{tabular}
        }
@@ -118,17 +118,17 @@
     Once the gametogenesis starts all the involved cells stop growing and some individuals will form gametes, likely because the triggering caugth them in a specific phase of the cell cycle.
     Only a part of these gametes will encounter the opposite mating type, and only some of these will successfully complete the other phases,producing an $F_{1}$ generation (e.g., Scalco et al.~2014).
     Eventually, those unable to mate or complete gametogenesis will die.
-    These considerations are compatible with the observed negative growth rate of $P$, and are formulated in the model as extra mortality ($d$).
+    These considerations are compatible with the observed negative growth rate of $P$, and are formulated in the model as extra mortality ($m$).
 
     Assuming that auxospore formation scales with the encounter rate among mates, the number of auxospore formation should positively covary with the number of cell deaths due to unsuccessful encounters.
     This covariation would favour the $F_{1}$ growth, thus favouring better recruitment.
-    Also, more encounters will increase the number of successful matings (parametrised by $\alpha$) and the extra mortality (parametrised by $d$).
+    Also, more encounters will increase the number of successful matings (parametrised by $\alpha$) and the extra mortality (parametrised by $m$).
     In the following we discuss the main patterns resulting from simulations where the different parameters were varied, in all possible combinations, within the ranges reported in \textbf{Tab.}~\ref{tbl1}
     As the main output variable, we focused on the recruitment success of the offsprings --- quantified as the ratio between $F_{1}$ and $P$ ($r_p : r_{F_{1}}$) --- after ten days from the start of mating.
 
-    Top row in \textbf{Fig.}~\ref{swep} show the ratio between the abundance of $F_{1}$ and that of $P$ after ten days of simulation for the growth rates ratio of $F_{1}$ and $P$ ($r_P : r_{F_{1}}$ on the $Y$ axis) vs $d$, the extra mortality ($X$ axis).
+    Top row in \textbf{Fig.}~\ref{swep} show the ratio between the abundance of $F_{1}$ and that of $P$ after ten days of simulation for the growth rates ratio of $F_{1}$ and $P$ ($r_P : r_{F_{1}}$ on the $Y$ axis) vs $m$, the extra mortality ($X$ axis).
     The colours correspond to different ranges in the values of the decimal logarithm for the abundance ratio, e.g., $\log_{10}(F_{1}/P)$ and each plot displays the result for different durations of the growth arrest ($t_{AE}$).
-    While $F_{1}$ will always be lower than $P$ (values of $\log_{10}(F_{1}/P)$ always lower than $0$), if the arrest persist more than four days a positive feedback appears between  abundance ratio and both net growth rates ($r_P : r_{F_{1}}$) and extra mortality $d$.
+    While $F_{1}$ will always be lower than $P$ (values of $\log_{10}(F_{1}/P)$ always lower than $0$), if the arrest persist more than four days a positive feedback appears between  abundance ratio and both net growth rates ($r_P : r_{F_{1}}$) and extra mortality $m$.
     In the more favourable scenarios, the ratio in abundance among $F_{1}$ and $P$ would be larger than $0.17$ (6 days of GA, dark green areas on the lower left).
     The lower row of the same figure shows the log-ratio among $F_{1}$ and $P$ abundances for various growth rate ration ($r_P : r_{F_{1}}$ on the $Y$ axis) vs the fraction of parental cells that generated daughter cells $F_{1}$ ($\alpha$), through auxospore formation.
     Success in recruitment appears to increase $F_{1}$ success, while growth rate ratio seems to affect it only for longer duration of growth arrest.
@@ -155,7 +155,7 @@
         {\color{blue}\textit{(a)}} dependence of specific growth rate on cell length;
         {\color{blue}\textit{(b)}} Size reduction for the two sub-populations;
         examples of simulation outputs whith $r_{p} >r_{f1}$ (1.06 and 0.58, respectively) {\color{blue}\textit{(c)}} and $r_{p} = r_{f1}$ {\color{blue}\textit{(d)}}.
-        In {\color{blue}\textit{(c)}} and {\color{blue}\textit{(d)}}: $\alpha=0.012, d = 0.8$, all the other parameters as per \textbf{Tab.~\ref{tbl1}}.
+        In {\color{blue}\textit{(c)}} and {\color{blue}\textit{(d)}}: $\alpha=0.012, m = 0.8$, all the other parameters as per \textbf{Tab.~\ref{tbl1}}.
       }\label{fdyn}.
     \end{figure}
     %
@@ -173,19 +173,19 @@
       {%
         \begin{subtable}{12cm}\centering\scriptsize
           {\input{tbls/ranalp-ranr0p_0.2.tex}}
-          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.2$}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } m = 0.2$}
         \end{subtable}
         \\
        \vspace{0.5cm}
         \begin{subtable}{12cm}\centering\scriptsize
           {\input{tbls/ranalp-ranr0p_0.4.tex}}
-          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.4$}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } m = 0.4$}
         \end{subtable}
         \\
        \vspace{0.5cm}
         \begin{subtable}{12cm}\centering\scriptsize
           {\input{tbls/ranalp-ranr0p_0.6.tex}}
-          \caption{$\alpha, r_p:r_{f1}, \text{with } d = 0.6$}
+          \caption{$\alpha, r_p:r_{f1}, \text{with } m = 0.6$}
         \end{subtable}
         \caption{Tabular data of $\log_{10}(F_{1}/P)$ for different values of parameters showed at bottom and growth arrest duration of three days.
                  All other parameters were assigned as per \textbf{Tab.~\ref{tbl1}}}\label{tbl2}
