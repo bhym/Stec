@@ -38,7 +38,7 @@ pla <- dfa_vs_r0p %>%
           xlab("m") +
           ylab(expression(r[P] : r[F1])) +
           coord_cartesian(ylim = c(0.5, 3)) +
-          scale_fill_viridis_d(end = 1 / 14 * 9,
+          scale_fill_viridis_d(end = 1 / 9 * 9,
                                name = expression(log[10](F[1] / P)))
                               #needed for col match of legends
 
