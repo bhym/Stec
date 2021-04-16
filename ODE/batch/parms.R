@@ -2,7 +2,7 @@
 input <- list(
            p_conc                 = 4E3,
            alpha_                 = 0.012,
-           dfac                   = 0.8,
+           dfac                   = 0.4,
            end_time               = 10,
            growth_block_start     = 1,
            growth_block_length    = 2,

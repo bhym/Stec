@@ -29,7 +29,7 @@ lsw_a <-  lsw %>%
    filter((rantga %in% c(0, 1)) | (ranf1is  == 3))
 
 dfa_vs_r0p <- filter(select(lsw_a, -ranf1is), ranalp == 0.01)
-alp_vs_r0p <- filter(select(lsw_a, -ranf1is), randfac == 0.8)
+alp_vs_r0p <- filter(select(lsw_a, -ranf1is), randfac == 0.4)
 
 pla <- dfa_vs_r0p %>%
           pl_parsub(randfac, ranr0p, seq(-2, 2, by = 0.25)) +
