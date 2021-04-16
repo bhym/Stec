@@ -18,7 +18,7 @@
     Cell numbers and available nitrogen are expressed as abundance and concentration, respectively.
 
     The simulation starts with a cell population ($P$) that enters the sexual reproduction phase after reaching a threshold value of a few thousand cells per ml (see~\cite{scalco2014dynamics}).
-    During this phase of variable length, the population stops growing and experiences a prolonged burst of extra mortality.
+    During this phase of variable length, the population stops growing and experiences a prolonged burst of gametogenesis-induced mortality.
     Within the same span, a $P$ fraction will undergo gametogenesis and generate an offspring population ($F_{1}$) that will start to grow the moment ($t_{F_{1}I}$) it appears.
     After $t_{AE}$ days, the growth arrest will end and $P$ will resumes its growth alongside $F_{1}$.
     During the entire course of the simulation (set to ten days) cell growth is modulated by competition over nitrogen and cell size via an allometric relationship (see~\cite{d2010time}).
@@ -108,7 +108,7 @@
           $t_{F_{1}I}$    & day of appearence of the offspring         & day               & 3           & Experiment detailed in the paper\\
           $L_{0,P}$       & starting length for $P$ cells              & $\mu$m            & 40          & Experiment detailed in the paper\\
           $L_{0,{F_{1}}}$ & starting length for $F_{1}$ cells          & $\mu$m            & 80          & Experiment detailed in the paper\\
-          $m$             & gametogenesis-induced extra mortality      & day               & [0.1, 0.9]  & Explored via simulations\\
+          $m$             & gametogenesis-induced mortality            & day               & [0.1, 0.9]  & Explored via simulations\\
           \bottomrule
         \end{tabular}
        }
