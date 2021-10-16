@@ -32,7 +32,7 @@ dfa_vs_r0p <- filter(select(lsw_a, -ranf1is), ranalp == 0.01)
 alp_vs_r0p <- filter(select(lsw_a, -ranf1is), randfac == 0.4)
 
 pla <- dfa_vs_r0p %>%
-          pl_parsub(randfac, ranr0p, seq(-2, 2, by = 0.25)) +
+          pl_parsub(randfac, ranr0p, seq(-2, 0.75, by = 0.25)) +
           geom_hline(yintercept = 1.826, col = "magenta", alpha = 0.5) +
           geom_hline(yintercept = 2.609, col = "red", alpha = 0.5) +
           facet_grid(~rantga) +
@@ -44,7 +44,7 @@ pla <- dfa_vs_r0p %>%
                               #needed for col match of legends
 
 plb <- alp_vs_r0p %>%
-         pl_parsub(ranalp, ranr0p, seq(-6, 2, by = 0.25)) +
+         pl_parsub(ranalp, ranr0p, seq(-2, 0.75, by = 0.25)) +
          facet_grid(~rantga) +
          xlab("\u03B1") +
          ylab(expression(r[P] : r[F1])) +
