@@ -43,7 +43,8 @@ function(input, output) {
 
       dp_p  <- r0_p * ifelse(t < blole, 0, p_ar$gr_alloc) * k * p_p  -
         ifelse(t < blole, dfac, 0) * p_p
-      dp_f1 <- r0_f1 * ifelse(t < t1aps, 0, f_ar$gr_alloc) * k * p_f1
+      dp_f1 <-  ifelse((t >= t1aps) & (t <= t1aps + 1), 2, 1) *
+                 r0_f1 * ifelse(t < t1aps, 0, f_ar$gr_alloc) * k * p_f1
       res <- c(dp_p, dp_f1)
       list(res)
     })
