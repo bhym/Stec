@@ -5,6 +5,5 @@ report/*.log
 report/*.out
 report/*.bbl
 report/*.bbg
-note
-ibm
-data_refs/*
+nonpub
+nonpub/*
